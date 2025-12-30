@@ -234,7 +234,8 @@
     background-repeat: no-repeat; 
     background-position: center; 
     background-attachment: scroll; 
-    height: 100vh;
+    /* ensure it fills the viewport but can grow taller on small screens */
+    min-height: 100vh;
     padding: 20px;
     position: relative;
   }
@@ -251,21 +252,144 @@
     position: absolute;
     inset: 10%; /* 10% margin from hero edges */
     border-radius: var(--radius-large);
-    background-color: rgba(253, 250, 247, 0.75); /* translucent box */
+    background-color: #d6cdae; /* base color */
+    background-color: rgba(214,205,174,0.9); /* translucent tint of #d6cdae */
     box-shadow: 0 8px 30px rgba(0,0,0,0.06);
     z-index: 1;
-    overflow: hidden;
-    padding: 2.2rem 0; /* vertical padding so .container sits nicely */
+    /* allow the hero section to grow instead of the box scrolling */
+    overflow: visible;
+    max-height: none;
+    padding: 3rem 2.5rem; /* more breathing room */
     display: flex;
+    flex-direction: column; /* stack children vertically */
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(4px);
   }
 
+  /* On smaller viewports reduce inset so the box has more room to expand vertically */
+  @media (max-width: 900px) {
+    .hero-box {
+      /* switch from absolute positioning to a normal flow element so it grows with content */
+      position: relative;
+      inset: auto;
+      width: calc(100% - 2rem);
+      margin: 0 1rem;
+      padding: 2rem 1.25rem;
+      border-radius: 14px;
+      align-items: stretch;
+      max-height: none;
+      overflow: visible;
+    }
+    .hero-copy {
+      padding: 0.5rem 0.5rem;
+      text-align: center;
+    }
+  }
+
+  /* Smaller phones: reduce heading / body sizes so text wraps nicely inside the hero box */
+  @media (max-width: 430px) {
+    .hero-copy h1 {
+      font-size: 1.6rem;
+      line-height: 1.25;
+      margin-top: 0.2rem;
+    }
+
+    .hero-copy p {
+      font-size: 0.98rem;
+      line-height: 1.4;
+      max-width: 36ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      margin-top: 1rem;
+    }
+  }
+
   .hero-box .container {
     width: 100%;
-    max-width: calc(1120px - 4rem); /* keep same container sizing inside box */
-    padding: 0 1.5rem;
+    max-width: none; /* allow content to span the full box */
+    padding: 0 2rem;
+  }
+
+  .hero-copy {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 1rem 1.25rem;
+    /* let content size naturally; avoid forcing full height which causes overflow */
+    max-width: 1100px;
+    box-sizing: border-box;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  /* Photos block: strict 3-column on desktop, switch directly to 1-column on small screens */
+  .hero-photos {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: nowrap; /* keep 3 columns on desktop */
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .hero-photos img {
+    /* three equal columns, preserve original aspect ratio */
+    width: calc((100% - 2rem) / 3);
+    max-width: 460px; /* allow bigger images on wide screens */
+    height: auto; /* preserve original aspect ratio */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  /* Single breakpoint: switch directly to stacked single-column on small screens */
+  @media (max-width: 900px) {
+    .hero-photos {
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      gap: 1rem;
+    }
+
+    .hero-photos img {
+      width: 92%;
+      max-width: 920px;
+      height: auto; /* preserve original aspect ratio */
+      flex: none;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .hero-copy {
+      gap: 1rem;
+      padding: 1rem;
+    }
+
+    .hero-photos {
+      width: 100%;
+      height: 40%;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-photos img {
+      width: 48%;
+      height: 120px;
+      flex: none;
+    }
   }
   
   .hero-copy h1 {
@@ -274,6 +398,20 @@
     color: #5d5838;
     margin: 0.4rem 0 0.8rem;
     letter-spacing: 0.02em;
+  }
+
+  .hero-copy p {
+    font-size: 1.05em; /* 5% larger than inherited size */
+    margin: 0;
+    color: #5d5838;
+    max-width: 80ch;
+    line-height: 1.5;
+  }
+
+  .hero-actions {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
   }
   
   .hero-subtext {
