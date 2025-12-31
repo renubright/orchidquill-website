@@ -76,12 +76,36 @@ main {
 /* Global utility */
 
 .container {
-  width: min(1120px, 100% - 3rem);
-  margin: 0 auto
+  width: min(1120px, 100% - 1.5rem);
+  margin: 0 auto;
+}
+
+@media (min-width: 480px) {
+  .container {
+    width: min(1120px, 100% - 2rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    width: min(1120px, 100% - 3rem);
+  }
 }
 
 .section {
-  padding: 4.5rem 0
+  padding: 2rem 0;
+}
+
+@media (min-width: 480px) {
+  .section {
+    padding: 3rem 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section {
+    padding: 4.5rem 0;
+  }
 }
 
 .section-header {
@@ -92,20 +116,20 @@ main {
 
 .section-header h2 {
   font-family: "Playfair Display", serif;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 4vw, 2rem);
   margin: 0.3rem 0 0.7rem;
   letter-spacing: 0.02em;
 }
 
 .section-intro {
   color: var(--text-muted);
-  font-size: 0.98rem;
+  font-size: clamp(0.9rem, 2vw, 0.98rem);
 }
 
 .eyebrow {
   text-transform: uppercase;
   letter-spacing: .17em;
-  font-size: 1.3rem;
+  font-size: clamp(1rem, 3vw, 1.3rem);
   color: var(--text-muted)
 }
 
@@ -136,7 +160,7 @@ main {
 
 .logo-main {
   font-family: "Playfair Display", serif;
-  font-size: 1.4rem;
+  font-size: clamp(1.1rem, 3vw, 1.4rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -198,7 +222,10 @@ main {
   flex-direction: column;
   justify-content: center;
   gap: 5px;
-  padding: .4rem
+  padding: 0.5rem;
+  min-width: 44px;
+  min-height: 44px;
+  align-items: center;
 }
 
 .nav-toggle-line {
@@ -215,8 +242,9 @@ main {
   align-items: center;
   justify-content: center;
   padding: .75rem 1.6rem;
+  min-height: 44px;
   border-radius: 999px;
-  font-size: .9rem;
+  font-size: clamp(0.85rem, 2vw, 0.9rem);
   letter-spacing: .14em;
   text-transform: uppercase;
   border: 1px solid transparent;
@@ -258,6 +286,8 @@ main {
   background-size: 100% auto;
   background-repeat: repeat-y;
   background-position: top center;
+  min-height: 50vh;
+  max-height: 70vh;
   height: 55vh;
   text-align: center;
   display: flex;
@@ -265,6 +295,19 @@ main {
   justify-content: center;
   position: relative;
   z-index: 0;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 480px) {
+  .pre-hero {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .pre-hero {
+    padding: 3rem 2rem;
+  }
 }
 
 /* Stack logo and eyebrow vertically inside pre-hero */
@@ -275,6 +318,8 @@ main {
   gap: 0;
   margin: 0;
   padding: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 /* Ensure the pre-hero logo and eyebrow have no extra spacing */
@@ -286,10 +331,18 @@ main {
   padding: 0;
 }
 
+.pre-hero .hero-photos {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* Make the centered pre-hero logo larger without affecting other photo blocks */
 .pre-hero .hero-photos img {
-  width: min(680px, 100%);
-  max-width: 680px;
+  width: min(800px, 75%);
+  max-width: 800px;
   height: auto;
   object-fit: contain;
   border: none !important;
@@ -297,6 +350,14 @@ main {
   box-shadow: none !important;
   border-radius: 0 !important;
   background: transparent;
+  flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+  .pre-hero .hero-photos img {
+    width: min(600px, 70%);
+    max-width: 600px;
+  }
 }
 
 /* Fade and zoom animation for logo and text */
@@ -328,12 +389,24 @@ main {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  min-height: 100vh;
-  padding: 2rem;
+  min-height: 100dvh;
+  padding: 1.5rem 1rem;
   position: relative;
   display: flex;
   align-items: center;
   z-index: 0;
+}
+
+@media (min-width: 480px) {
+  .hero {
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 2rem;
+  }
 }
 
 /* hero layout simplified to flex */
@@ -345,7 +418,7 @@ main {
   border-radius: var(--radius-large);
   background: rgba(214, 205, 174, .92);
   box-shadow: 0 8px 30px rgba(0, 0, 0, .06);
-  padding: 3rem 2rem;
+  padding: 2rem 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -353,6 +426,18 @@ main {
   text-transform: none;
   /* Prefer Lucy Rose (local or hosted). Fallbacks follow. */
   font-family: 'Lucy Rose', 'Lancelot', 'Playfair Display', serif;
+}
+
+@media (min-width: 480px) {
+  .hero-box {
+    padding: 2.5rem 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-box {
+    padding: 3rem 2rem;
+  }
 }
 
 /* Hero paragraphs: show sentence-case (first letter uppercase, rest lowercase) */
@@ -365,14 +450,12 @@ main {
 }
 
 /* On smaller viewports reduce inset so the box has more room to expand vertically */
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   .hero-box {
-    /* switch from absolute positioning to a normal flow element so it grows with content */
     position: relative;
     inset: auto;
-    width: calc(100% - 2rem);
-    margin: 0 1rem;
-    padding: 2rem 1.25rem;
+    width: calc(100% - 1rem);
+    margin: 0 auto;
     border-radius: 14px;
     align-items: stretch;
     max-height: none;
@@ -380,34 +463,15 @@ main {
   }
 
   .hero-copy {
-    padding: 0.5rem 0.5rem;
+    padding: 0.5rem;
     text-align: center;
   }
 }
 
-/* Smaller phones: reduce heading / body sizes so text wraps nicely inside the hero box */
-@media (max-width: 430px) {
-  .hero-copy p:first-of-type {
-    font-size: 1.4rem;
-    line-height: 1.25;
-    margin-top: 0.2rem;
-  }
-
-  .hero-copy p {
-    font-size: 1.05rem;
-    line-height: 1.4;
-    max-width: 36ch;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  /* scale down the hero subtext on very small screens */
-  .hero .hero-copy p:last-of-type {
-    font-size: 1.05rem;
-  }
-
-  .hero-actions {
-    margin-top: 1rem;
+@media (max-width: 480px) {
+  .hero-box {
+    width: 100%;
+    border-radius: 12px;
   }
 }
 
@@ -459,7 +523,7 @@ main {
   margin-top: 1.8rem;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   .hero-copy p:first-of-type {
     margin-bottom: 1.8rem;
   }
@@ -478,59 +542,61 @@ main {
   width: calc((100% - 2rem)/3);
   max-width: 460px;
   height: auto;
+  aspect-ratio: 4/3;
   object-fit: cover;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
   border: 1px solid rgba(0, 0, 0, .04)
 }
 
-/* Single breakpoint: switch directly to stacked single-column on small screens */
-@media(max-width:900px) {
+/* Responsive hero photos: 3 columns → 2 columns → 1 column */
+@media (max-width: 1023px) {
+  .hero-photos {
+    flex-wrap: wrap;
+  }
+
+  .hero-photos img {
+    width: calc((100% - 1rem)/2);
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
   .hero-photos {
     flex-direction: column;
     align-items: center;
     width: 100%;
-    gap: 1rem
+    gap: 1rem;
   }
 
   .hero-photos img {
-    width: 92%;
-    max-width: 920px;
-    height: auto;
-    flex: none
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: auto;
   }
-}
 
-@media(max-width:640px) {
   .hero-copy {
     gap: 1rem;
-    padding: 1rem
-  }
-
-  .hero-photos {
-    width: 100%;
-    gap: .75rem;
-    flex-wrap: wrap
-  }
-
-  .hero-photos img {
-    width: 48%;
-    height: 120px;
-    flex: none
+    padding: 0.5rem;
   }
 }
 
+.hero-copy p:first-of-type {
+  font-family: inherit;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  color: #5d5838;
+  margin: .4rem 0 .8rem;
+  letter-spacing: .02em;
+}
+
+@media (min-width: 1024px) {
   .hero-copy p:first-of-type {
-    font-family: inherit;
-    font-size: 1.8rem;
-    color: #5d5838;
-    margin: .4rem 0 .8rem;
-    letter-spacing: .02em;
+    font-size: 2.2rem;
   }
+}
 
 .hero-copy p {
-  font-size: 1.2em;
-  /* larger for emphasis inside hero */
+  font-size: clamp(1.05rem, 2.5vw, 1.2em);
   margin: 0;
   color: #5d5838;
   max-width: 80ch;
@@ -539,7 +605,7 @@ main {
 
 /* Slightly larger subtext (the second paragraph) inside the hero box */
 .hero .hero-copy p:last-of-type {
-  font-size: 1.4em;
+  font-size: clamp(1.1rem, 3vw, 1.4em);
 }
 
 .hero-actions {
@@ -668,9 +734,21 @@ main {
 
 .about-inner {
   display: flex;
-  gap: 2.5rem;
+  gap: 1.5rem;
   align-items: center;
-  flex-wrap: wrap
+  flex-wrap: wrap;
+}
+
+@media (min-width: 480px) {
+  .about-inner {
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-inner {
+    gap: 2.5rem;
+  }
 }
 
 .about-image {
@@ -679,15 +757,15 @@ main {
 }
 
 .about-photo-placeholder {
-  width: 210px;
-  height: 210px;
+  width: clamp(150px, 25vw, 210px);
+  height: clamp(150px, 25vw, 210px);
   border-radius: 50%;
   background: linear-gradient(145deg, #f2e3d5, #f9f1e7);
   border: 1px solid rgba(231, 216, 201, 0.9);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: clamp(0.65rem, 1.5vw, 0.75rem);
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.18em;
@@ -695,7 +773,7 @@ main {
 
 .about-content h2 {
   font-family: "Playfair Display", serif;
-  font-size: 1.9rem;
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
   margin: 0.3rem 0 0.8rem;
 }
 
@@ -721,13 +799,25 @@ main {
 
 .contact-inner {
   display: flex;
-  gap: 2.5rem;
-  flex-wrap: wrap
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+@media (min-width: 480px) {
+  .contact-inner {
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .contact-inner {
+    gap: 2.5rem;
+  }
 }
 
 .contact-copy h2 {
   font-family: "Playfair Display", serif;
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
   margin: 0.4rem 0 0.7rem;
 }
 
@@ -750,11 +840,18 @@ main {
 .contact-form-wrapper {
   background: var(--card-bg);
   border-radius: var(--radius-large);
-  padding: 1.8rem;
+  padding: 1.5rem;
   border: 1px solid rgba(231, 216, 201, .9);
   box-shadow: var(--shadow-soft);
-  flex: 1 1 320px;
-  min-width: 280px
+  flex: 1 1 300px;
+  min-width: 100%;
+}
+
+@media (min-width: 480px) {
+  .contact-form-wrapper {
+    min-width: 300px;
+    padding: 1.8rem;
+  }
 }
 
 .form-group {
@@ -781,13 +878,23 @@ textarea {
   width: 100%;
   border-radius: 999px;
   border: 1px solid rgba(231, 216, 201, 0.9);
-  padding: 0.65rem 0.9rem;
+  padding: 0.75rem 1rem;
+  min-height: 44px;
   font-family: inherit;
-  font-size: 0.9rem;
+  font-size: clamp(0.9rem, 2vw, 1rem);
   outline: none;
   background-color: #fefdfb;
   transition: border-color 0.15s ease, box-shadow 0.15s ease,
     background-color 0.15s ease;
+}
+
+@media (min-width: 480px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="date"] {
+    padding: 0.65rem 0.9rem;
+    min-height: auto;
+  }
 }
 
 textarea {
@@ -795,6 +902,13 @@ textarea {
   resize: vertical;
   min-height: 120px;
   line-height: 1.5;
+  padding: 0.75rem 1rem;
+}
+
+@media (min-width: 480px) {
+  textarea {
+    padding: 0.65rem 0.9rem;
+  }
 }
 
 input:focus,
@@ -837,24 +951,24 @@ textarea:focus {
 
 /* Responsive */
 
-@media(min-width:640px) {
+@media (min-width: 768px) {
   .about-inner {
-    flex-wrap: nowrap
+    flex-wrap: nowrap;
   }
 
   .contact-inner {
     flex-wrap: nowrap;
-    align-items: flex-start
+    align-items: flex-start;
   }
 
   .services-grid {
-    gap: 1.5rem
+    gap: 1.5rem;
   }
 }
 
-@media(min-width:900px) {
+@media (min-width: 1024px) {
   .site-nav {
-    display: block
+    display: block;
   }
 
   .site-nav ul {
@@ -862,19 +976,15 @@ textarea:focus {
   }
 
   .nav-toggle {
-    display: none
+    display: none;
   }
 
   .hero {
-    padding: 5.3rem 0 4.8rem
-  }
-
-  .hero-copy p:first-of-type {
-    font-size: 2.2rem;
+    padding: 5.3rem 0 4.8rem;
   }
 
   .services-grid .service-card {
-    flex: 1 1 calc(33.333% - 1rem)
+    flex: 1 1 calc(33.333% - 1rem);
   }
 }
 
@@ -928,24 +1038,39 @@ textarea:focus {
   margin: 0 auto;
 }
 
-@media (max-width: 640px) {
-  #portfolio-intro { padding: 3.5rem 0; }
+@media (max-width: 767px) {
+  #portfolio-intro {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  #portfolio-intro {
+    padding: 2.5rem 0;
+  }
 }
 
 /* Increase eyebrow size and constrain intro width for portfolio intro */
 #portfolio-intro .eyebrow {
-  font-size: 1.8rem;
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
   letter-spacing: 0.18em;
 }
 
 #portfolio-intro .container {
-  width: min(840px, 100% - 3rem);
+  width: min(840px, 100% - 1.5rem);
   margin: 0 auto;
 }
 
-@media (max-width: 640px) {
-  #portfolio-intro .eyebrow { font-size: 1.4rem; }
-  #portfolio-intro .container { width: calc(100% - 2rem); }
+@media (min-width: 480px) {
+  #portfolio-intro .container {
+    width: min(840px, 100% - 2rem);
+  }
+}
+
+@media (min-width: 768px) {
+  #portfolio-intro .container {
+    width: min(840px, 100% - 3rem);
+  }
 }
 
 /* Portfolio Gallery Box */
@@ -1022,44 +1147,50 @@ textarea:focus {
 }
 
 /* Responsive adjustments for portfolio box */
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   .portfolio-box {
-    padding: 3.5rem 3.5rem;
+    padding: 3.5rem 3rem;
     border-radius: 14px;
   }
 
   .portfolio-grid {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
   }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   #portfolio-gallery {
-    padding: 3rem 0;
+    padding: 2.5rem 0;
   }
 
   .portfolio-box {
-    padding: 3rem 2.5rem;
+    padding: 2.5rem 2rem;
     border-radius: 12px;
     margin: 0 1rem;
     width: calc(100% - 2rem);
   }
 
   .portfolio-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
+  #portfolio-gallery {
+    padding: 2rem 0;
   }
 
   .portfolio-box {
-    padding: 2.5rem 1.5rem;
+    padding: 2rem 1.5rem;
+    margin: 0 0.75rem;
+    width: calc(100% - 1.5rem);
+  }
+
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
   }
 }
 
@@ -1107,7 +1238,7 @@ textarea:focus {
 
 .lightbox-image {
   max-width: 100%;
-  max-height: 90vh;
+  max-height: 90dvh;
   width: auto;
   height: auto;
   object-fit: contain;
@@ -1122,8 +1253,10 @@ textarea:focus {
   background: rgba(255, 255, 255, 0.9);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
   font-size: 2rem;
   line-height: 1;
   cursor: pointer;
@@ -1144,7 +1277,7 @@ textarea:focus {
   transform: scale(0.95);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .lightbox-content {
     padding: 1rem;
     max-width: 95%;
@@ -1153,12 +1286,14 @@ textarea:focus {
   .lightbox-close {
     top: 0.5rem;
     right: 0.5rem;
-    width: 35px;
-    height: 35px;
-    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    min-height: 44px;
+    font-size: 1.75rem;
   }
 
   .lightbox-image {
-    max-height: 85vh;
+    max-height: 85dvh;
   }
 }
