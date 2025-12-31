@@ -1088,7 +1088,7 @@ main:has(.section-contact) {
 .section-contact .eyebrow {
   font-size: clamp(1.4rem, 4vw, 1.8rem);
   letter-spacing: 0.18em;
-  color: #fff;
+  color: #7b6e64;
 }
 
 @media (min-width: 1024px) {
@@ -1257,7 +1257,7 @@ main:has(.section-contact) {
 }
 
 .form-intro {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   text-align: center;
@@ -1272,6 +1272,7 @@ main:has(.section-contact) {
 
 .form-intro p:first-child {
   font-size: 1.1rem;
+  line-height: 1.8;
 }
 
 .form-intro p:last-child {
@@ -1292,7 +1293,11 @@ main:has(.section-contact) {
 }
 
 .form-group {
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group:has(.checkbox-group) {
+  margin-bottom: 2.5rem;
 }
 
 .form-group label {
