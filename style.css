@@ -264,7 +264,8 @@ main:has(.section-contact) {
 .btn-primary {
   background: linear-gradient(135deg, var(--accent), #5a2539);
   color: #fffaf5;
-  box-shadow: var(--shadow-soft)
+  box-shadow: var(--shadow-soft);
+  font-family: "Playfair Display", serif;
 }
 
 .btn-primary:hover {
@@ -287,7 +288,6 @@ main:has(.section-contact) {
 }
 
 /* Pre-Hero */
-
 
 .pre-hero {
   background-image: url("images/plum velvet.jpg");
@@ -416,8 +416,6 @@ main:has(.section-contact) {
     padding: 2rem;
   }
 }
-
-/* hero layout simplified to flex */
 
 /* Translucent rounded box that contains hero content */
 .hero-box {
@@ -924,7 +922,6 @@ main:has(.section-contact) {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-
 .team-member-info {
   margin-top: 1rem;
   text-align: center;
@@ -1106,8 +1103,7 @@ main:has(.section-contact) {
   }
 
   .section-contact .contact-box {
-    margin: 0 auto 0;
-    padding-bottom: 3.5rem !important;
+    margin: 0 auto 4rem;
   }
 }
 
@@ -1133,6 +1129,7 @@ main:has(.section-contact) {
 .contact-box {
   max-width: 1200px;
   margin: 0 auto;
+  margin-bottom: 4rem;
   border-radius: var(--radius-large);
   background: rgba(143, 92, 105, 0.62);
   backdrop-filter: blur(10px);
@@ -1141,7 +1138,7 @@ main:has(.section-contact) {
     0 8px 30px rgba(0, 0, 0, 0.15),
     0 0 0 1px rgba(255, 255, 255, 0.1) inset,
     0 2px 20px rgba(255, 255, 255, 0.05) inset;
-  padding: 4.5rem 5rem 6rem 5rem;
+  padding: 4.5rem 5rem;
   display: flex;
   flex-direction: column;
   gap: 2.5rem;
@@ -1164,7 +1161,8 @@ main:has(.section-contact) {
 
 @media (min-width: 1024px) {
   .contact-box {
-    padding: 3.5rem 3rem 5rem 3rem;
+    padding: 3.5rem 3rem;
+    margin-bottom: 5rem;
     border-radius: 14px;
     flex-direction: column;
     gap: 0;
@@ -1173,17 +1171,16 @@ main:has(.section-contact) {
 
 @media (max-width: 767px) {
   .contact-box {
-    padding: 2.5rem 2rem 4rem 2rem;
-    border-radius: 12px;
-    margin: 0 1rem;
+    padding: 2.5rem 2rem;
+    margin: 0 1rem 4rem 1rem;
     width: calc(100% - 2rem);
   }
 }
 
 @media (max-width: 480px) {
   .contact-box {
-    padding: 2rem 1.5rem 3.5rem 1.5rem;
-    margin: 0 0.75rem;
+    padding: 2rem 1.5rem;
+    margin: 0 0.75rem 3rem 0.75rem;
     width: calc(100% - 1.5rem);
   }
 }
@@ -1316,6 +1313,27 @@ main:has(.section-contact) {
   letter-spacing: 0.02em;
 }
 
+.form-group label.checkbox-label {
+  display: flex;              /* override .form-group label { display:block } */
+  align-items: center;        /* vertical centering */
+  gap: 0.75rem;
+  margin-bottom: 0;           /* remove label spacing meant for normal labels */
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.form-group label.checkbox-label input[type="checkbox"] {
+  flex: 0 0 20px;
+  display: block;
+  margin: 0;
+}
+
+.form-group label.checkbox-label span {
+  display: inline;            /* keep text inline */
+  line-height: 1;             /* helps true center alignment */
+  color: #D4C9B8;
+}
+
 input[type="text"],
 input[type="email"],
 input[type="date"],
@@ -1387,6 +1405,7 @@ textarea:focus {
   font-style: italic;
 }
 
+/* ---------- CHECKBOX FIX (alignment) ---------- */
 .checkbox-group {
   display: flex;
   flex-direction: column;
@@ -1403,6 +1422,7 @@ textarea:focus {
   letter-spacing: 0.1em;
   cursor: pointer;
   color: #EDE8D0;
+  line-height: 1.2; /* helps vertical centering */
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -1421,7 +1441,11 @@ textarea:focus {
   position: relative;
   transition: border-color 0.15s ease, box-shadow 0.15s ease,
     background-color 0.15s ease;
-  flex-shrink: 0;
+  flex: 0 0 20px;       /* lock width in flex row */
+  display: block;       /* remove baseline weirdness */
+  /* Optional micro-nudge if your browser font rendering is still off:
+  transform: translateY(-1px);
+  */
 }
 
 .checkbox-label input[type="checkbox"]:hover {
@@ -1453,11 +1477,11 @@ textarea:focus {
 
 .checkbox-label span {
   user-select: none;
-  color: #EDE8D0 !important;
-  line-height: 20px;
-  display: inline-block;
-  vertical-align: middle;
+  color: #D4C9B8 !important;
+  display: block;      /* avoid inline baseline alignment */
+  line-height: 1.2;    /* avoid "20px line-height" mismatch */
 }
+/* ---------- END CHECKBOX FIX ---------- */
 
 .form-success {
   margin-top: 0.9rem;
