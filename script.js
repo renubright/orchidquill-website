@@ -30,7 +30,7 @@ if (form) form.addEventListener('submit', e => {
   if (!message) { setError('message', 'Share a little about your wedding and what you’re dreaming of.'); ok = false } else setError('message', '');
   if (!ok) return;
   form.reset();
-  if (successMessage) successMessage.textContent = 'Thank you for reaching out. Your enquiry has been received and we’ll respond warmly as soon as possible.';
+  if (successMessage) successMessage.textContent = 'Thank you for reaching out. Your inquiry has been received and we'll respond warmly as soon as possible.';
 });
 
 // Dynamic year in footer

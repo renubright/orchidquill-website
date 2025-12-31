@@ -1,84 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Orchid Quill — About</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="About — Orchid Quill" />
 
-<head>
-  <meta charset="UTF-8" />
-  <title>Orchid Quill — About</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="About — Orchid Quill" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap"
+      rel="stylesheet"
+    />
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lora:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Lancelot&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-  <link rel="stylesheet" href="style.css" />
-</head>
+  <body>
+    <!-- Header / Navigation -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a href="index.html" class="logo">
+          <span class="logo-main">Orchid Quill</span>
+        </a>
 
-<body>
-  <!-- Header / Navigation -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="logo">
-        <span class="logo-main">Orchid Quill</span>
-      </a>
+        <button class="nav-toggle" aria-label="Toggle navigation">
+          <span class="nav-toggle-line"></span>
+          <span class="nav-toggle-line"></span>
+        </button>
 
-      <button class="nav-toggle" aria-label="Toggle navigation">
-        <span class="nav-toggle-line"></span>
-        <span class="nav-toggle-line"></span>
-      </button>
+        <nav class="site-nav">
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-      <nav class="site-nav">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="portfolio.html">Portfolio</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
+    <main>
+      <section id="about-intro" class="section">
+        <div class="container">
+          <header class="section-header">
+            <p class="eyebrow">About us</p>
+          </header>
+        </div>
+      </section>
 
-  <main>
-    <!-- About Section -->
-    <section id="about" class="section section-about">
-      <div class="container about-inner">
-        <div class="about-image">
-          <div class="about-photo-placeholder">
-            <span>Founder's Portrait</span>
+      <!-- Team Section -->
+      <section class="section section-about">
+        <div class="container">
+          <div class="about-box">
+            <!-- First entry: Text | Image | Text -->
+            <div class="team-member team-member-text-image-text">
+              <div class="team-member-text">
+                <p>
+                  Velvet Quill is a luxury, full-service wedding invitation and
+                  stationery studio specializing in custom, handmade creations
+                  crafted with exquisite attention to detail. Using a thoughtful
+                  blend of mixed media, we make magic.
+                </p>
+              </div>
+              <div class="team-member-image">
+                <img src="images/main1.png" alt="Team Member 1" />
+              </div>
+              <div class="team-member-text">
+                <p>
+                  We work with clients across the globe, offering a truly
+                  bespoke experience tailored to each couple's vision. Every
+                  piece we create is a handcrafted heirloom.
+                </p>
+              </div>
+            </div>
+
+            <!-- Second entry: Image | Text | Image -->
+            <div class="team-member team-member-image-text-image">
+              <div class="team-member-image">
+                <img src="images/main2.png" alt="Team Member 2" />
+              </div>
+              <div class="team-member-content">
+                <p>
+                  Once a client partners with us, we guide them through every
+                  detail—from color palettes to custom design elements—crafting
+                  unique invitations tailored to their vision. We work with a
+                  variety of materials, including paper, leather, wax, ribbon,
+                  velvet, and more, to bring each creation to life.
+                </p>
+              </div>
+              <div class="team-member-image">
+                <img src="images/main3.png" alt="Team Member 2 Alternate" />
+              </div>
+            </div>
           </div>
         </div>
+      </section>
+    </main>
 
-        <div class="about-content">
-          <p class="eyebrow">About Orchid Quill</p>
-          <h2>Warm, considered design with a personal touch.</h2>
-          <p>
-            Orchid Quill was born from a love of slow details—the weight of a beautiful card, the softness of cotton stock, the way a delicate script can feel like a whispered vow.
-          </p>
-          <p>
-            Behind the studio is a designer who believes that your wedding stationery should be more than an invitation; it should be an experience.
-          </p>
-          <p>
-            Whether you’re planning an intimate gathering or a grand celebration, Orchid Quill works closely with you to translate your story into paper—capturing the warmth, romance, and quiet magic of your day.
-          </p>
-          <blockquote class="about-quote">“Beautiful stationery should feel like holding a small piece of your story.”</blockquote>
-        </div>
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <p>&copy; <span id="year"></span> Orchil Quill. All rights reserved.</p>
+        <p class="footer-note">
+          Crafted with care for couples who love beautiful details.
+        </p>
       </div>
-    </section>
-  </main>
+    </footer>
 
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <p>&copy; <span id="year"></span> Orchil Quill. All rights reserved.</p>
-      <p class="footer-note">
-        Crafted with care for couples who love beautiful details.
-      </p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
-</body>
-
+    <script src="script.js"></script>
+  </body>
 </html>
