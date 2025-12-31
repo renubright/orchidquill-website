@@ -78,7 +78,18 @@ if (form)
         "Please provide the invitation drop date."
       );
       ok = false;
-    } else setError("invitation-drop-date", "");
+    } else {
+      const dropDate = new Date(invitationDropDate);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      if (dropDate <= today) {
+        setError(
+          "invitation-drop-date",
+          "Invitation drop date must be in the future."
+        );
+        ok = false;
+      } else setError("invitation-drop-date", "");
+    }
     if (budget !== null) {
       if (!budget || isNaN(budget)) {
         setError("budget", "Please enter a valid budget amount.");
