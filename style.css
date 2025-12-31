@@ -289,6 +289,33 @@ main {
   max-width: 680px;
   height: auto;
   object-fit: contain;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  background: transparent;
+}
+
+/* Fade and zoom animation for logo and text */
+.pre-hero .hero-photos img,
+.pre-hero .eyebrow {
+  animation: fadeZoomIn 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.pre-hero .eyebrow {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* Hero */
