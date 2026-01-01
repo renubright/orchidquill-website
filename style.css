@@ -1,4 +1,6 @@
-/* Base styles */
+/* ========================================
+   BASE STYLES
+   ======================================== */
 
 :root {
   --bg: #fdfaf7;
@@ -10,14 +12,15 @@
   --text-main: #f7efe7;
   --text-muted: #7b6e64;
   --error: #c0392b;
+  --text-light: #EDE8D0;
+  --text-light-muted: #D4C9B8;
+  --overlay-dark: rgba(0, 0, 0, 0.35);
   --radius-large: 18px;
   --radius-medium: 12px;
   --shadow-soft: 0 18px 45px rgba(0, 0, 0, 0.05);
 }
 
-/* Placeholder @font-face for Lancelot. Drop Lancelot.woff2 into /fonts and
-   the site will use it. If you host the font elsewhere (CDN/Typekit), you
-   can remove this block and use the provider's embed code instead. */
+/* Fonts */
 @font-face {
   font-family: 'Lancelot';
   src: local('Lancelot'),
@@ -28,9 +31,6 @@
   font-display: swap;
 }
 
-/* Placeholder @font-face for Lucy Rose (from dafont). Download the font
-   files (WOFF/WOFF2 or TTF) into /fonts and update filenames as needed. Be
-   sure you have the right to host this font locally according to its license. */
 @font-face {
   font-family: 'Lucy Rose';
   src: local('Lucy Rose'),
@@ -43,8 +43,7 @@
   font-display: swap;
 }
 
-/* Reset-ish */
-
+/* Reset */
 *,
 *::before,
 *::after {
@@ -81,7 +80,9 @@ main:has(.section-contact) {
   background: transparent;
 }
 
-/* Global utility */
+/* ========================================
+   UTILITY CLASSES
+   ======================================== */
 
 .container {
   width: min(1120px, 100% - 1.5rem);
@@ -119,7 +120,7 @@ main:has(.section-contact) {
 .section-header {
   text-align: center;
   max-width: 720px;
-  margin: 0 auto 3rem
+  margin: 0 auto 3rem;
 }
 
 .section-header h2 {
@@ -138,16 +139,24 @@ main:has(.section-contact) {
   text-transform: uppercase;
   letter-spacing: .17em;
   font-size: clamp(1rem, 3vw, 1.3rem);
-  color: var(--text-muted)
+  color: var(--text-muted);
 }
 
-/* Header / nav */
+/* Large eyebrow variant (used in intro sections) */
+.eyebrow-large {
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  letter-spacing: 0.18em;
+}
+
+/* ========================================
+   HEADER & NAVIGATION
+   ======================================== */
 
 .site-header {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: #5a2539;
+  background: var(--accent);
   backdrop-filter: blur(10px);
 }
 
@@ -155,7 +164,7 @@ main:has(.section-contact) {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: .75rem 0
+  padding: .75rem 0;
 }
 
 .logo {
@@ -180,10 +189,9 @@ main:has(.section-contact) {
   margin-top: 0.1rem;
 }
 
-/* Nav */
-
+/* Navigation */
 .site-nav {
-  display: none
+  display: none;
 }
 
 .site-nav ul {
@@ -199,7 +207,7 @@ main:has(.section-contact) {
   font-size: 0.9rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #f7efe7;
+  color: var(--text-main);
   position: relative;
 }
 
@@ -220,7 +228,6 @@ main:has(.section-contact) {
 }
 
 /* Mobile nav toggle */
-
 .nav-toggle {
   background: none;
   border: 0;
@@ -242,7 +249,43 @@ main:has(.section-contact) {
   border-radius: 999px;
 }
 
-/* Buttons */
+/* Mobile nav dropdown */
+.site-nav.is-open {
+  display: block;
+  position: absolute;
+  inset: 100% 0 auto 0;
+  background: var(--accent);
+  border-bottom: 1px solid rgba(231, 216, 201, .3);
+  padding: .8rem 1.5rem 1.2rem;
+}
+
+.site-nav.is-open ul {
+  flex-direction: column;
+  gap: .8rem;
+  align-items: flex-end;
+}
+
+.site-nav.is-open a {
+  color: var(--text-main);
+}
+
+@media (min-width: 1024px) {
+  .site-nav {
+    display: block;
+  }
+
+  .site-nav ul {
+    align-items: center;
+  }
+
+  .nav-toggle {
+    display: none;
+  }
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
 
 .btn {
   display: inline-flex;
@@ -257,11 +300,11 @@ main:has(.section-contact) {
   border: 1px solid transparent;
   cursor: pointer;
   text-decoration: none;
-  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, border-color .15s ease, color .15s ease
+  transition: transform .15s ease, box-shadow .15s ease, background-color .15s ease, border-color .15s ease, color .15s ease;
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #5a2539);
+  background: linear-gradient(135deg, var(--accent), var(--accent));
   color: #fffaf5;
   box-shadow: var(--shadow-soft);
   font-family: "Playfair Display", serif;
@@ -269,24 +312,26 @@ main:has(.section-contact) {
 
 .btn-primary:hover {
   transform: translateY(-1px);
-  box-shadow: #5a2539;
+  box-shadow: var(--accent);
 }
 
 .btn-ghost {
   background-color: transparent;
   color: var(--text-main);
-  border-color: #5a2539;
+  border-color: var(--accent);
 }
 
 .btn-ghost:hover {
-  background-color: #5a2539;
+  background-color: var(--accent);
 }
 
 .btn-full {
   width: 100%;
 }
 
-/* Pre-Hero */
+/* ========================================
+   PRE-HERO SECTION
+   ======================================== */
 
 .pre-hero {
   min-height: 50vh;
@@ -317,19 +362,6 @@ main:has(.section-contact) {
   z-index: -1;
 }
 
-@media (min-width: 480px) {
-  .pre-hero {
-    padding: 2.5rem 1.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .pre-hero {
-    padding: 3rem 2rem;
-  }
-}
-
-/* Stack logo and eyebrow vertically inside pre-hero */
 .pre-hero .pre-hero-logo {
   display: flex;
   flex-direction: column;
@@ -341,7 +373,6 @@ main:has(.section-contact) {
   max-width: 100%;
 }
 
-/* Ensure the pre-hero logo and eyebrow have no extra spacing */
 .pre-hero .hero-photos,
 .pre-hero .hero-photos img,
 .pre-hero .pre-hero-logo > img {
@@ -349,7 +380,6 @@ main:has(.section-contact) {
   padding: 0;
 }
 
-/* Increase font size for pre-hero eyebrow text */
 .pre-hero .eyebrow {
   margin: 0;
   padding: 0;
@@ -364,7 +394,6 @@ main:has(.section-contact) {
   align-items: center;
 }
 
-/* Make the centered pre-hero logo larger without affecting other photo blocks */
 .pre-hero .hero-photos img {
   width: min(640px, 60%);
   max-width: 640px;
@@ -376,6 +405,39 @@ main:has(.section-contact) {
   border-radius: 0 !important;
   background: transparent;
   flex-shrink: 0;
+}
+
+.pre-hero .hero-photos img,
+.pre-hero .eyebrow {
+  animation: fadeZoomIn 1.2s ease-out forwards;
+  opacity: 0;
+}
+
+.pre-hero .eyebrow {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@media (min-width: 480px) {
+  .pre-hero {
+    padding: 2.5rem 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .pre-hero {
+    padding: 3rem 2rem;
+  }
 }
 
 @media (max-width: 767px) {
@@ -398,29 +460,9 @@ main:has(.section-contact) {
   }
 }
 
-/* Fade and zoom animation for logo and text */
-.pre-hero .hero-photos img,
-.pre-hero .eyebrow {
-  animation: fadeZoomIn 1.2s ease-out forwards;
-  opacity: 0;
-}
-
-.pre-hero .eyebrow {
-  animation-delay: 0.3s;
-}
-
-@keyframes fadeZoomIn {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Hero */
+/* ========================================
+   HERO SECTION
+   ======================================== */
 
 .hero {
   background-image: url("images/woodland.jpg");
@@ -436,19 +478,6 @@ main:has(.section-contact) {
   box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.35);
 }
 
-@media (min-width: 480px) {
-  .hero {
-    padding: 2rem 1.5rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .hero {
-    padding: 2rem;
-  }
-}
-
-/* Translucent rounded box that contains hero content */
 .hero-box {
   max-width: 1100px;
   margin: 0 auto;
@@ -461,23 +490,9 @@ main:has(.section-contact) {
   align-items: center;
   backdrop-filter: blur(4px);
   text-transform: none;
-  /* Prefer Lucy Rose (local or hosted). Fallbacks follow. */
   font-family: 'Lucy Rose', 'Lancelot', 'Playfair Display', serif;
 }
 
-@media (min-width: 480px) {
-  .hero-box {
-    padding: 2.5rem 2rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .hero-box {
-    padding: 3rem 2rem;
-  }
-}
-
-/* Hero paragraphs: show sentence-case (first letter uppercase, rest lowercase) */
 .hero-box p {
   text-transform: lowercase;
 }
@@ -486,36 +501,10 @@ main:has(.section-contact) {
   text-transform: uppercase;
 }
 
-/* On smaller viewports reduce inset so the box has more room to expand vertically */
-@media (max-width: 1023px) {
-  .hero-box {
-    position: relative;
-    inset: auto;
-    width: calc(100% - 1rem);
-    margin: 0 auto;
-    border-radius: 14px;
-    align-items: stretch;
-    max-height: none;
-    overflow: visible;
-  }
-
-  .hero-copy {
-    padding: 0.5rem;
-    text-align: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-box {
-    width: 100%;
-    border-radius: 12px;
-  }
-}
-
 .hero-box .container {
   width: 100%;
   max-width: none;
-  padding: 0 1rem
+  padding: 0 1rem;
 }
 
 .hero-copy {
@@ -527,94 +516,7 @@ main:has(.section-contact) {
   text-align: center;
   padding: 1rem;
   max-width: 1100px;
-  box-sizing: border-box
-}
-
-.hero-actions {
-  justify-content: center;
-}
-
-/* Photos block: strict 3-column on desktop, switch directly to 1-column on small screens */
-.hero-photos {
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
-  align-items: flex-start;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto
-}
-
-/* Increase vertical spacing between hero text and images */
-.hero-copy p:first-of-type {
-  margin-bottom: 2.4rem;
-}
-
-/* Scope spacing to the main hero only so pre-hero is unaffected */
-.hero .hero-photos {
-  margin-top: 1.2rem;
-  margin-bottom: 2rem;
-}
-
-.hero .hero-photos + p {
-  margin-top: 1.8rem;
-}
-
-@media (max-width: 1023px) {
-  .hero-copy p:first-of-type {
-    margin-bottom: 1.8rem;
-  }
-
-  .hero .hero-photos {
-    margin-top: 0.9rem;
-    margin-bottom: 1.6rem;
-  }
-
-  .hero .hero-photos + p {
-    margin-top: 1.2rem;
-  }
-}
-
-.hero-photos img {
-  width: calc((100% - 2rem)/3);
-  max-width: 460px;
-  height: auto;
-  object-fit: contain;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
-  border: 1px solid rgba(0, 0, 0, .04)
-}
-
-/* Responsive hero photos: 3 columns → 2 columns → 1 column */
-@media (max-width: 1023px) {
-  .hero-photos {
-    flex-wrap: wrap;
-  }
-
-  .hero-photos img {
-    width: calc((100% - 1rem)/2);
-    max-width: none;
-  }
-}
-
-@media (max-width: 767px) {
-  .hero-photos {
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    gap: 1rem;
-  }
-
-  .hero-photos img {
-    width: 100%;
-    max-width: 500px;
-    aspect-ratio: auto;
-  }
-
-  .hero-copy {
-    gap: 1rem;
-    padding: 0.5rem;
-  }
+  box-sizing: border-box;
 }
 
 .hero-copy p:first-of-type {
@@ -623,12 +525,11 @@ main:has(.section-contact) {
   color: #5d5838;
   margin: .4rem 0 .8rem;
   letter-spacing: .02em;
+  margin-bottom: 2.4rem;
 }
 
-@media (min-width: 1024px) {
-  .hero-copy p:first-of-type {
-    font-size: 2.2rem;
-  }
+.hero .hero-copy p:last-of-type {
+  font-size: clamp(1.1rem, 3vw, 1.4em);
 }
 
 .hero-copy p {
@@ -639,18 +540,43 @@ main:has(.section-contact) {
   line-height: 1.5;
 }
 
-/* Slightly larger subtext (the second paragraph) inside the hero box */
-.hero .hero-copy p:last-of-type {
-  font-size: clamp(1.1rem, 3vw, 1.4em);
+.hero-photos {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hero .hero-photos {
+  margin-top: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.hero .hero-photos + p {
+  margin-top: 1.8rem;
+}
+
+.hero-photos img {
+  width: calc((100% - 2rem)/3);
+  max-width: 460px;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
+  border: 1px solid rgba(0, 0, 0, .04);
 }
 
 .hero-actions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   justify-content: center;
-  margin-top: 0.5rem;
+  margin-top: 1.5rem;
 }
 
-/* Keep hero action buttons using Playfair Display for consistent styling */
 .hero .hero-actions .btn {
   font-family: "Playfair Display", serif;
 }
@@ -660,15 +586,6 @@ main:has(.section-contact) {
   font-size: 0.98rem;
   max-width: 480px;
 }
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 1.5rem;
-}
-
-/* Hero visual */
 
 .hero-visual {
   display: flex;
@@ -711,28 +628,116 @@ main:has(.section-contact) {
   padding-left: 1rem;
 }
 
-/* Services */
+@media (min-width: 480px) {
+  .hero {
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-box {
+    padding: 2.5rem 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding: 2rem;
+  }
+
+  .hero-box {
+    padding: 3rem 2rem;
+  }
+}
+
+@media (max-width: 1023px) {
+  .hero-copy p:first-of-type {
+    margin-bottom: 1.8rem;
+  }
+
+  .hero .hero-photos {
+    margin-top: 0.9rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .hero .hero-photos + p {
+    margin-top: 1.2rem;
+  }
+
+  .hero-box {
+    position: relative;
+    inset: auto;
+    width: calc(100% - 1rem);
+    margin: 0 auto;
+    border-radius: 14px;
+    align-items: stretch;
+    max-height: none;
+    overflow: visible;
+  }
+
+  .hero-copy {
+    padding: 0.5rem;
+    text-align: center;
+  }
+
+  .hero-photos {
+    flex-wrap: wrap;
+  }
+
+  .hero-photos img {
+    width: calc((100% - 1rem)/2);
+    max-width: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-photos {
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .hero-photos img {
+    width: 100%;
+    max-width: 500px;
+    aspect-ratio: auto;
+  }
+
+  .hero-copy {
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-box {
+    width: 100%;
+    border-radius: 12px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding: 5.3rem 0 4.8rem;
+  }
+
+  .hero-copy p:first-of-type {
+    font-size: 2.2rem;
+  }
+}
+
+/* ========================================
+   SERVICES SECTION
+   ======================================== */
 
 .section-services {
   background-color: var(--bg-alt);
 }
 
-#portfolio {
-  background-image: url("images/portfolio_background.png");
-  background-size: 100% auto;
-  background-position: top center;
-  background-repeat: repeat-y;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-/* services use flex for easier responsive control */
 .services-grid {
   display: flex;
   flex-wrap: wrap;
   gap: 1.5rem;
-  align-items: stretch
+  align-items: stretch;
 }
 
 .service-card {
@@ -742,7 +747,7 @@ main:has(.section-contact) {
   border: 1px solid rgba(231, 216, 201, .9);
   box-shadow: 0 8px 25px rgba(0, 0, 0, .02);
   flex: 1 1 calc(33.333% - 1rem);
-  min-width: 220px
+  min-width: 220px;
 }
 
 .service-card h3 {
@@ -762,12 +767,142 @@ main:has(.section-contact) {
   border-color: rgba(184, 138, 203, 0.45);
 }
 
-/* About */
+@media (min-width: 768px) {
+  .services-grid {
+    gap: 1.5rem;
+  }
+}
 
-.section-about .section-header .eyebrow {
+@media (min-width: 1024px) {
+  .services-grid .service-card {
+    flex: 1 1 calc(33.333% - 1rem);
+  }
+}
+
+/* ========================================
+   INTRO SECTIONS (Portfolio & About)
+   ======================================== */
+
+/* Shared intro section styles */
+.intro-section {
+  padding: 0;
+  color: #fff;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vh;
+}
+
+.intro-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-dark);
+  pointer-events: none;
+}
+
+.intro-section .section-header {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto;
+}
+
+.intro-section .eyebrow {
   font-size: clamp(1.4rem, 4vw, 1.8rem);
   letter-spacing: 0.18em;
-  color: #7b6e64;
+}
+
+.intro-section .container {
+  width: min(840px, 100% - 1.5rem);
+  margin: 0 auto;
+}
+
+#portfolio-intro {
+  background-image: url("images/brown velvet.png");
+  background-size: auto;
+  background-position: top left;
+  background-repeat: repeat;
+}
+
+#about-intro {
+  background-image: url("images/about_banner.png");
+  background-size: 50%;
+  background-position: top left;
+}
+
+@media (min-width: 480px) {
+  .intro-section .container {
+    width: min(840px, 100% - 2rem);
+  }
+}
+
+@media (min-width: 768px) {
+  .intro-section .container {
+    width: min(840px, 100% - 3rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .intro-section {
+    padding: 3rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .intro-section {
+    padding: 2.5rem 0;
+  }
+}
+
+/* ========================================
+   SECTION OVERLAY PATTERN
+   (Shared by About, Contact, Portfolio Gallery)
+   ======================================== */
+
+.section-with-overlay {
+  position: relative;
+  padding: 4.5rem 0 0 0 !important;
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+  flex: 1;
+  min-height: calc(100vh - 150px);
+  background-attachment: fixed;
+}
+
+.section-with-overlay::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--overlay-dark);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-with-overlay .section-header {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.section-with-overlay .section-header .eyebrow,
+.section-about .section-header .eyebrow,
+.section-contact .section-header .eyebrow,
+#portfolio-gallery .section-header .eyebrow {
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+
+.section-with-overlay .container {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
 }
 
 .section-about {
@@ -775,8 +910,8 @@ main:has(.section-contact) {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  padding: 4.5rem 0 0 0 !important;
   position: relative;
+  padding: 4.5rem 0 0 0 !important;
   margin: 0 !important;
   padding-bottom: 0 !important;
   flex: 1;
@@ -791,7 +926,7 @@ main:has(.section-contact) {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.35);
+  background: var(--overlay-dark);
   pointer-events: none;
   z-index: 0;
 }
@@ -803,15 +938,220 @@ main:has(.section-contact) {
   text-align: center;
 }
 
+.section-about .container {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.section-contact {
+  background-image: url("images/contact_banner.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 4.5rem 0 0 0 !important;
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+  flex: 1;
+  min-height: calc(100vh - 150px);
+  background-attachment: fixed;
+}
+
+.section-contact::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--overlay-dark);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.section-contact .section-header {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+.section-contact .container {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#portfolio-gallery.section {
+  background-image: url("images/portfolio_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  padding: 4.5rem 0 0 0 !important;
+  margin: 0 !important;
+  padding-bottom: 0 !important;
+  flex: 1;
+  min-height: calc(100vh - 150px);
+  background-attachment: fixed;
+}
+
+#portfolio-gallery::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--overlay-dark);
+  pointer-events: none;
+  z-index: 0;
+}
+
+#portfolio-gallery .section-header {
+  position: relative;
+  z-index: 1;
+  margin: 0 auto 3rem;
+  text-align: center;
+}
+
+#portfolio-gallery .container {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+#portfolio {
+  background-image: url("images/portfolio_background.png");
+  background-size: 100% auto;
+  background-position: top center;
+  background-repeat: repeat-y;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 480px) {
+  .section-with-overlay,
+  .section-about,
+  .section-contact,
+  #portfolio-gallery.section {
+    padding: 3rem 0 0 0 !important;
+  }
+}
+
+@media (max-width: 479px) {
+  .section-with-overlay,
+  .section-about,
+  .section-contact,
+  #portfolio-gallery.section {
+    padding: 2rem 0 0 0 !important;
+  }
+}
+
 @media (min-width: 1024px) {
-  .section-about {
+  .section-with-overlay,
+  .section-about,
+  .section-contact,
+  #portfolio-gallery.section {
     padding: 4.5rem 0 0 0 !important;
     margin-bottom: 0 !important;
   }
 
-  .section-about .container {
+  .section-with-overlay .container,
+  .section-about .container,
+  .section-contact .container,
+  #portfolio-gallery .container {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
+  }
+}
+
+/* ========================================
+   CONTENT BOX PATTERN
+   (Shared by About, Contact, Portfolio boxes)
+   ======================================== */
+
+.content-box {
+  max-width: 1200px;
+  margin: 0 auto;
+  border-radius: var(--radius-large);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 
+    0 8px 30px rgba(0, 0, 0, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
+    0 2px 20px rgba(255, 255, 255, 0.05) inset;
+  padding: 4.5rem 5rem !important;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: visible;
+  box-sizing: border-box;
+}
+
+.content-box::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+  opacity: 0.6;
+  border-radius: inherit;
+  z-index: 0;
+}
+
+.about-box {
+  background: #8f5c699f;
+  font-family: 'Lancelot', 'Playfair Display', serif;
+  padding: 4.5rem 5rem !important;
+  border-radius: var(--radius-large);
+}
+
+.contact-box {
+  background: rgba(143, 92, 105, 0.62);
+  margin-bottom: 4rem;
+  gap: 2.5rem;
+}
+
+.portfolio-box {
+  background: rgba(43, 39, 38, 0.658);
+  justify-content: center;
+  align-items: center;
+  padding: 4.5rem 5rem !important;
+  border-radius: var(--radius-large);
+  margin-bottom: 4rem;
+}
+
+.portfolio-box .portfolio-grid {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 1024px) {
+  .content-box {
+    padding: 4.5rem 5rem !important;
+  }
+
+  .contact-box {
+    padding: 3.5rem 3rem;
+    margin-bottom: 5rem;
+    border-radius: var(--radius-large);
+    flex-direction: column;
+    gap: 0;
   }
 
   .section-about .about-box {
@@ -822,121 +1162,94 @@ main:has(.section-contact) {
   .section-about .team-member:last-child {
     margin-bottom: 0;
   }
+}
 
-  #portfolio-gallery {
-    padding: 4.5rem 0 0 0 !important;
-    margin-bottom: 0 !important;
+@media (max-width: 1023px) {
+  .content-box {
+    padding: 3.5rem 3rem !important;
+    border-radius: var(--radius-large);
   }
 
-  #portfolio-gallery .container {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+  .about-box,
+  .portfolio-box {
+    padding: 3.5rem 3rem !important;
+    border-radius: var(--radius-large);
+  }
+
+  .about-box {
+    margin-bottom: 4rem;
+  }
+
+  .portfolio-box {
+    margin-bottom: 4rem;
   }
 }
 
-.section-about .container {
-  position: relative;
-  z-index: 1;
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
+@media (max-width: 767px) {
+  .content-box {
+    padding: 2.5rem 2rem !important;
+    border-radius: var(--radius-medium);
+    margin: 0 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  .about-box,
+  .portfolio-box {
+    padding: 2.5rem 2rem !important;
+    border-radius: var(--radius-medium);
+  }
+
+  .about-box {
+    margin-bottom: 3rem;
+  }
+
+  .portfolio-box {
+    margin-bottom: 3rem;
+  }
+
+  .contact-box {
+    margin: 0 1rem 4rem 1rem;
+    border-radius: var(--radius-medium);
+  }
 }
 
-@media (min-width: 480px) {
-  .section-about {
-    padding: 3rem 0 0 0 !important;
+@media (max-width: 480px) {
+  .content-box {
+    padding: 2rem 1.5rem !important;
+    margin: 0 0.75rem;
+    width: calc(100% - 1.5rem);
+    border-radius: var(--radius-medium);
   }
 
-  #portfolio-gallery {
-    padding: 3rem 0 0 0 !important;
+  .about-box,
+  .portfolio-box {
+    padding: 2rem 1.5rem !important;
+    border-radius: var(--radius-medium);
+  }
+
+  .about-box {
+    margin-bottom: 2.5rem;
+  }
+
+  .portfolio-box {
+    margin-bottom: 2.5rem;
+  }
+
+  .contact-box {
+    margin: 0 0.75rem 3rem 0.75rem;
+    border-radius: var(--radius-medium);
   }
 }
 
-@media (max-width: 479px) {
-  .section-about {
-    padding: 2rem 0 0 0 !important;
-  }
-
-  #portfolio-gallery {
-    padding: 2rem 0 0 0 !important;
-  }
-}
+/* ========================================
+   ABOUT SECTION
+   ======================================== */
 
 .about-inner {
   display: flex;
   gap: 1.5rem;
   align-items: center;
   flex-wrap: wrap;
-}
-
-@media (min-width: 480px) {
-  .about-inner {
-    gap: 2rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .about-inner {
-    gap: 2.5rem;
-  }
-}
-
-/* About Box - similar to portfolio box */
-.about-box {
-  max-width: 1200px;
-  margin: 0 auto;
-  border-radius: var(--radius-large);
-  background: #8f5c699f;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-    0 2px 20px rgba(255, 255, 255, 0.05) inset;
-  padding: 4.5rem 5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  font-family: 'Lancelot', 'Playfair Display', serif;
-}
-
-.about-box::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-/* Responsive adjustments for about box */
-@media (max-width: 1023px) {
-  .about-box {
-    padding: 3.5rem 3rem;
-    border-radius: 14px;
-  }
-}
-
-@media (max-width: 767px) {
-  .about-box {
-    padding: 2.5rem 2rem;
-    border-radius: 12px;
-    margin: 0 1rem;
-    width: calc(100% - 2rem);
-  }
-}
-
-@media (max-width: 480px) {
-  .about-box {
-    padding: 2rem 1.5rem;
-    margin: 0 0.75rem;
-    width: calc(100% - 1.5rem);
-  }
 }
 
 .about-image {
@@ -979,20 +1292,39 @@ main:has(.section-contact) {
   color: var(--text-muted);
 }
 
-/* Team Members */
+@media (min-width: 480px) {
+  .about-inner {
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-inner {
+    gap: 2.5rem;
+    flex-wrap: nowrap;
+  }
+}
+
+/* ========================================
+   TEAM MEMBERS
+   ======================================== */
+
 .team-member {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 2rem;
   align-items: start;
   margin-bottom: 4rem;
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
 .team-member:last-child {
   margin-bottom: 0;
 }
 
-/* Text | Image | Text layout */
 .team-member-text-image-text {
   grid-template-columns: 1fr 1fr 1fr;
 }
@@ -1021,27 +1353,6 @@ main:has(.section-contact) {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
-.team-member-info {
-  margin-top: 1rem;
-  text-align: center;
-}
-
-.team-member-info h3 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(1.3rem, 3vw, 1.7rem);
-  margin: 0 0 0.5rem;
-  color: var(--text-main);
-}
-
-.team-member-info .team-member-role {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--text-muted);
-  margin: 0;
-}
-
-/* Image | Text | Image layout */
 .team-member-image-text-image {
   grid-template-columns: 1fr 1.5fr 1fr;
 }
@@ -1069,6 +1380,26 @@ main:has(.section-contact) {
   height: 100%;
 }
 
+.team-member-info {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.team-member-info h3 {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(1.3rem, 3vw, 1.7rem);
+  margin: 0 0 0.5rem;
+  color: var(--text-main);
+}
+
+.team-member-info .team-member-role {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  margin: 0;
+}
+
 .team-member-content h3 {
   font-family: "Playfair Display", serif;
   font-size: clamp(1.5rem, 3vw, 1.9rem);
@@ -1089,7 +1420,7 @@ main:has(.section-contact) {
   margin: 0;
   font-size: 1.4rem;
   text-align: justify;
-  color: #EDE8D0;
+  color: var(--text-light);
   line-height: 1.6;
 }
 
@@ -1101,7 +1432,6 @@ main:has(.section-contact) {
   margin-bottom: 0;
 }
 
-/* Responsive adjustments */
 @media (max-width: 1023px) {
   .team-member {
     grid-template-columns: 1fr;
@@ -1149,157 +1479,14 @@ main:has(.section-contact) {
   }
 }
 
-/* Contact */
-
-.section-contact {
-  background-image: url("images/contact_banner.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 4.5rem 0 0 0 !important;
-  position: relative;
-  margin: 0 !important;
-  padding-bottom: 0 !important;
-  flex: 1;
-  min-height: calc(100vh - 150px);
-  background-attachment: fixed;
-}
-
-.section-contact::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.35);
-  pointer-events: none;
-  z-index: 0;
-}
-
-.section-contact .section-header {
-  position: relative;
-  z-index: 1;
-  margin: 0 auto 3rem;
-  text-align: center;
-}
-
-.section-contact .section-header .eyebrow {
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
-  letter-spacing: 0.18em;
-  color: #7b6e64;
-}
-
-@media (min-width: 1024px) {
-  .section-contact {
-    padding: 4.5rem 0 0 0 !important;
-    margin-bottom: 0 !important;
-  }
-
-  .section-contact .container {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-  }
-
-  .section-contact .contact-box {
-    margin: 0 auto 4rem;
-  }
-}
-
-.section-contact .container {
-  position: relative;
-  z-index: 1;
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-@media (min-width: 480px) {
-  .section-contact {
-    padding: 3rem 0 0 0 !important;
-  }
-}
-
-@media (max-width: 479px) {
-  .section-contact {
-    padding: 2rem 0 0 0 !important;
-  }
-}
-
-.contact-box {
-  max-width: 1200px;
-  margin: 0 auto;
-  margin-bottom: 4rem;
-  border-radius: var(--radius-large);
-  background: rgba(143, 92, 105, 0.62);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-    0 2px 20px rgba(255, 255, 255, 0.05) inset;
-  padding: 4.5rem 5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2.5rem;
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-}
-
-.contact-box::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-@media (min-width: 1024px) {
-  .contact-box {
-    padding: 3.5rem 3rem;
-    margin-bottom: 5rem;
-    border-radius: 14px;
-    flex-direction: column;
-    gap: 0;
-  }
-}
-
-@media (max-width: 767px) {
-  .contact-box {
-    padding: 2.5rem 2rem;
-    margin: 0 1rem 4rem 1rem;
-    width: calc(100% - 2rem);
-  }
-}
-
-@media (max-width: 480px) {
-  .contact-box {
-    padding: 2rem 1.5rem;
-    margin: 0 0.75rem 3rem 0.75rem;
-    width: calc(100% - 1.5rem);
-  }
-}
+/* ========================================
+   CONTACT SECTION
+   ======================================== */
 
 .contact-inner {
   display: flex;
   gap: 1.5rem;
   flex-wrap: wrap;
-}
-
-@media (min-width: 480px) {
-  .contact-inner {
-    gap: 2rem;
-  }
-}
-
-@media (min-width: 768px) {
-  .contact-inner {
-    gap: 2.5rem;
-  }
 }
 
 .contact-copy {
@@ -1312,11 +1499,11 @@ main:has(.section-contact) {
   font-family: "Playfair Display", serif;
   font-size: clamp(1.5rem, 4vw, 1.8rem);
   margin: 0.4rem 0 0.7rem;
-  color: #EDE8D0;
+  color: var(--text-light);
 }
 
 .contact-copy .section-intro {
-  color: #EDE8D0;
+  color: var(--text-light);
   margin-bottom: 1.5rem;
 }
 
@@ -1327,11 +1514,11 @@ main:has(.section-contact) {
 .contact-details p {
   margin: 0.5rem 0;
   font-size: 0.95rem;
-  color: #EDE8D0;
+  color: var(--text-light);
 }
 
 .contact-details a {
-  color: #EDE8D0;
+  color: var(--text-light);
   text-decoration: underline;
 }
 
@@ -1339,20 +1526,29 @@ main:has(.section-contact) {
   text-decoration: none;
 }
 
-/* Form */
+@media (min-width: 480px) {
+  .contact-inner {
+    gap: 2rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .contact-inner {
+    gap: 2.5rem;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+  }
+}
+
+/* ========================================
+   CONTACT FORM
+   ======================================== */
 
 .contact-form-wrapper {
   flex: 1;
   position: relative;
   z-index: 1;
   width: 100%;
-}
-
-@media (min-width: 1024px) {
-  .contact-form-wrapper {
-    max-width: 800px;
-    margin: 0 auto;
-  }
 }
 
 .form-intro {
@@ -1364,7 +1560,7 @@ main:has(.section-contact) {
 
 .form-intro p {
   margin: 0 0 0.75rem 0;
-  color: #EDE8D0;
+  color: var(--text-light);
   line-height: 1.6;
   letter-spacing: 0.05em;
 }
@@ -1381,7 +1577,7 @@ main:has(.section-contact) {
 }
 
 .form-intro a {
-  color: #EDE8D0;
+  color: var(--text-light);
   text-decoration: underline;
   transition: opacity 0.15s ease;
 }
@@ -1404,7 +1600,7 @@ main:has(.section-contact) {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.18em;
-  color: #EDE8D0;
+  color: var(--text-light);
   margin-bottom: 0.35rem;
 }
 
@@ -1418,10 +1614,10 @@ main:has(.section-contact) {
 }
 
 .form-group label.checkbox-label {
-  display: flex;              /* override .form-group label { display:block } */
-  align-items: center;        /* vertical centering */
+  display: flex;
+  align-items: center;
   gap: 0.75rem;
-  margin-bottom: 0;           /* remove label spacing meant for normal labels */
+  margin-bottom: 0;
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
@@ -1433,9 +1629,9 @@ main:has(.section-contact) {
 }
 
 .form-group label.checkbox-label span {
-  display: inline;            /* keep text inline */
-  line-height: 1;             /* helps true center alignment */
-  color: #D4C9B8;
+  display: inline;
+  line-height: 1;
+  color: var(--text-light-muted);
 }
 
 input[type="text"],
@@ -1452,7 +1648,7 @@ textarea {
   font-size: clamp(0.9rem, 2vw, 1rem);
   outline: none;
   background-color: rgba(255, 255, 255, 0.2);
-  color: #EDE8D0;
+  color: var(--text-light);
   transition: border-color 0.15s ease, box-shadow 0.15s ease,
     background-color 0.15s ease;
 }
@@ -1464,28 +1660,12 @@ textarea::placeholder {
   color: rgba(237, 232, 208, 0.6);
 }
 
-@media (min-width: 480px) {
-  input[type="text"],
-  input[type="email"],
-  input[type="date"],
-  input[type="number"] {
-    padding: 0.65rem 0.9rem;
-    min-height: auto;
-  }
-}
-
 textarea {
   border-radius: 18px;
   resize: vertical;
   min-height: 120px;
   line-height: 1.5;
   padding: 0.75rem 1rem;
-}
-
-@media (min-width: 480px) {
-  textarea {
-    padding: 0.65rem 0.9rem;
-  }
 }
 
 input:focus,
@@ -1509,7 +1689,6 @@ textarea:focus {
   font-style: italic;
 }
 
-/* ---------- CHECKBOX FIX (alignment) ---------- */
 .checkbox-group {
   display: flex;
   flex-direction: column;
@@ -1525,8 +1704,8 @@ textarea:focus {
   text-transform: uppercase;
   letter-spacing: 0.1em;
   cursor: pointer;
-  color: #EDE8D0;
-  line-height: 1.2; /* helps vertical centering */
+  color: var(--text-light);
+  line-height: 1.2;
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -1545,11 +1724,8 @@ textarea:focus {
   position: relative;
   transition: border-color 0.15s ease, box-shadow 0.15s ease,
     background-color 0.15s ease;
-  flex: 0 0 20px;       /* lock width in flex row */
-  display: block;       /* remove baseline weirdness */
-  /* Optional micro-nudge if your browser font rendering is still off:
-  transform: translateY(-1px);
-  */
+  flex: 0 0 20px;
+  display: block;
 }
 
 .checkbox-label input[type="checkbox"]:hover {
@@ -1569,7 +1745,7 @@ textarea:focus {
   top: 2px;
   width: 5px;
   height: 10px;
-  border: solid #EDE8D0;
+  border: solid var(--text-light);
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }
@@ -1581,11 +1757,10 @@ textarea:focus {
 
 .checkbox-label span {
   user-select: none;
-  color: #D4C9B8 !important;
-  display: block;      /* avoid inline baseline alignment */
-  line-height: 1.2;    /* avoid "20px line-height" mismatch */
+  color: var(--text-light-muted) !important;
+  display: block;
+  line-height: 1.2;
 }
-/* ---------- END CHECKBOX FIX ---------- */
 
 .form-success {
   margin-top: 0.9rem;
@@ -1593,289 +1768,30 @@ textarea:focus {
   color: #256a42;
 }
 
-/* Footer */
-
-.site-footer {
-  padding: 2rem 0 2.3rem;
-  background-color: #5a2539;
-  color: #f7efe7;
-}
-
-.footer-inner {
-  text-align: center;
-  font-size: 0.85rem;
-}
-
-.footer-note {
-  margin-top: 0.3rem;
-  color: #f7efe7;
-}
-
-/* Responsive */
-
-@media (min-width: 768px) {
-  .about-inner {
-    flex-wrap: nowrap;
+@media (min-width: 480px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="number"] {
+    padding: 0.65rem 0.9rem;
+    min-height: auto;
   }
 
-  .contact-inner {
-    flex-wrap: nowrap;
-    align-items: flex-start;
-  }
-
-  .services-grid {
-    gap: 1.5rem;
+  textarea {
+    padding: 0.65rem 0.9rem;
   }
 }
 
 @media (min-width: 1024px) {
-  .site-nav {
-    display: block;
-  }
-
-  .site-nav ul {
-    align-items: center;
-  }
-
-  .nav-toggle {
-    display: none;
-  }
-
-  .hero {
-    padding: 5.3rem 0 4.8rem;
-  }
-
-  .services-grid .service-card {
-    flex: 1 1 calc(33.333% - 1rem);
+  .contact-form-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
   }
 }
 
-/* Mobile nav dropdown */
-
-.site-nav.is-open {
-  display: block;
-  position: absolute;
-  inset: 100% 0 auto 0;
-  background: #5a2539;
-  border-bottom: 1px solid rgba(231, 216, 201, .3);
-  padding: .8rem 1.5rem 1.2rem
-}
-
-.site-nav.is-open ul {
-  flex-direction: column;
-  gap: .8rem;
-  align-items: flex-end;
-}
-
-.site-nav.is-open a {
-  color: #f7efe7;
-}
-
-/* Portfolio intro hero background */
-#portfolio-intro {
-  background-image: url("images/brown velvet.png");
-  background-size: auto;
-  background-position: top left;
-  background-repeat: repeat;
-  height: 10vh;
-  padding: 0;
-  color: #fff;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#portfolio-intro::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  pointer-events: none;
-}
-
-#portfolio-intro .section-header { 
-  position: relative; 
-  z-index: 1; 
-  margin: 0 auto;
-}
-
-@media (max-width: 767px) {
-  #portfolio-intro {
-    padding: 3rem 0;
-  }
-}
-
-@media (max-width: 480px) {
-  #portfolio-intro {
-    padding: 2.5rem 0;
-  }
-}
-
-/* Increase eyebrow size and constrain intro width for portfolio intro */
-#portfolio-intro .eyebrow {
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
-  letter-spacing: 0.18em;
-}
-
-#portfolio-intro .container {
-  width: min(840px, 100% - 1.5rem);
-  margin: 0 auto;
-}
-
-@media (min-width: 480px) {
-  #portfolio-intro .container {
-    width: min(840px, 100% - 2rem);
-  }
-}
-
-@media (min-width: 768px) {
-  #portfolio-intro .container {
-    width: min(840px, 100% - 3rem);
-  }
-}
-
-/* About intro hero background */
-#about-intro {
-  background-image: url("images/about_banner.png");
-  background-size: 50%;
-  background-position: top left;
-  /* background-repeat: repeat; */
-  height: 10vh;
-  padding: 0;
-  color: #fff;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-#about-intro::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(0,0,0,0.35);
-  pointer-events: none;
-}
-
-#about-intro .section-header { 
-  position: relative; 
-  z-index: 1; 
-  margin: 0 auto;
-}
-
-@media (max-width: 767px) {
-  #about-intro {
-    padding: 3rem 0;
-  }
-}
-
-@media (max-width: 480px) {
-  #about-intro {
-    padding: 2.5rem 0;
-  }
-}
-
-/* Increase eyebrow size and constrain intro width for about intro */
-#about-intro .eyebrow {
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
-  letter-spacing: 0.18em;
-}
-
-#about-intro .container {
-  width: min(840px, 100% - 1.5rem);
-  margin: 0 auto;
-}
-
-@media (min-width: 480px) {
-  #about-intro .container {
-    width: min(840px, 100% - 2rem);
-  }
-}
-
-@media (min-width: 768px) {
-  #about-intro .container {
-    width: min(840px, 100% - 3rem);
-  }
-}
-
-/* Portfolio Gallery Box */
-#portfolio-gallery.section {
-  background-image: url("images/portfolio_background.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  padding: 4.5rem 0 0 0 !important;
-  position: relative;
-  margin: 0 !important;
-  padding-bottom: 0 !important;
-  flex: 1;
-  min-height: calc(100vh - 150px);
-  background-attachment: fixed;
-}
-
-#portfolio-gallery::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0,0,0,0.35);
-  pointer-events: none;
-  z-index: 0;
-}
-
-#portfolio-gallery .section-header {
-  position: relative;
-  z-index: 1;
-  margin: 0 auto 3rem;
-  text-align: center;
-}
-
-#portfolio-gallery .section-header .eyebrow {
-  font-size: clamp(1.4rem, 4vw, 1.8rem);
-  letter-spacing: 0.18em;
-  color: #7b6e64;
-}
-
-#portfolio-gallery .container {
-  position: relative;
-  z-index: 1;
-  padding-bottom: 0 !important;
-  margin-bottom: 0 !important;
-}
-
-.portfolio-box {
-  max-width: 1200px;
-  margin: 0 auto;
-  border-radius: var(--radius-large);
-  background: rgba(43, 39, 38, 0.658);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 
-    0 8px 30px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset,
-    0 2px 20px rgba(255, 255, 255, 0.05) inset;
-  padding: 4.5rem 5rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-}
-
-.portfolio-box::before {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
-  pointer-events: none;
-  opacity: 0.6;
-}
+/* ========================================
+   PORTFOLIO GALLERY
+   ======================================== */
 
 .portfolio-grid {
   display: grid;
@@ -1910,13 +1826,7 @@ textarea:focus {
   object-fit: cover;
 }
 
-/* Responsive adjustments for portfolio box */
 @media (max-width: 1023px) {
-  .portfolio-box {
-    padding: 3.5rem 3rem;
-    border-radius: 14px;
-  }
-
   .portfolio-grid {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2rem;
@@ -1924,13 +1834,6 @@ textarea:focus {
 }
 
 @media (max-width: 767px) {
-  .portfolio-box {
-    padding: 2.5rem 2rem;
-    border-radius: 12px;
-    margin: 0 1rem;
-    width: calc(100% - 2rem);
-  }
-
   .portfolio-grid {
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
@@ -1938,20 +1841,16 @@ textarea:focus {
 }
 
 @media (max-width: 480px) {
-
-  .portfolio-box {
-    padding: 2rem 1.5rem;
-    margin: 0 0.75rem;
-    width: calc(100% - 1.5rem);
-  }
-
   .portfolio-grid {
     grid-template-columns: 1fr;
     gap: 1.25rem;
   }
 }
 
-/* Lightbox Modal */
+/* ========================================
+   LIGHTBOX MODAL
+   ======================================== */
+
 .lightbox-modal {
   display: none;
   position: fixed;
@@ -2055,7 +1954,30 @@ textarea:focus {
   }
 }
 
-/* Thanks page progress bar */
+/* ========================================
+   FOOTER
+   ======================================== */
+
+.site-footer {
+  padding: 2rem 0 2.3rem;
+  background-color: var(--accent);
+  color: var(--text-main);
+}
+
+.footer-inner {
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.footer-note {
+  margin-top: 0.3rem;
+  color: var(--text-main);
+}
+
+/* ========================================
+   THANKS PAGE
+   ======================================== */
+
 #home-button {
   position: relative;
   overflow: hidden;
@@ -2082,3 +2004,4 @@ textarea:focus {
   border-color: transparent;
   outline: none;
 }
+
