@@ -323,7 +323,7 @@ main:has(.section-contact) {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0;
+  gap: 1.5rem;
   margin: 0;
   padding: 0;
   width: 100%;
@@ -333,10 +333,16 @@ main:has(.section-contact) {
 /* Ensure the pre-hero logo and eyebrow have no extra spacing */
 .pre-hero .hero-photos,
 .pre-hero .hero-photos img,
-.pre-hero .pre-hero-logo > img,
+.pre-hero .pre-hero-logo > img {
+  margin: 0;
+  padding: 0;
+}
+
+/* Increase font size for pre-hero eyebrow text */
 .pre-hero .eyebrow {
   margin: 0;
   padding: 0;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
 }
 
 .pre-hero .hero-photos {
@@ -349,8 +355,8 @@ main:has(.section-contact) {
 
 /* Make the centered pre-hero logo larger without affecting other photo blocks */
 .pre-hero .hero-photos img {
-  width: min(800px, 75%);
-  max-width: 800px;
+  width: min(640px, 60%);
+  max-width: 640px;
   height: auto;
   object-fit: contain;
   border: none !important;
@@ -361,10 +367,23 @@ main:has(.section-contact) {
   flex-shrink: 0;
 }
 
+@media (max-width: 767px) {
+  .pre-hero {
+    min-height: 32vh;
+    max-height: 40vh;
+    height: 36vh;
+    padding: 1.5rem 1rem;
+  }
+  
+  .pre-hero .eyebrow {
+    font-size: clamp(0.9rem, 3vw, 1.1rem);
+  }
+}
+
 @media (max-width: 480px) {
   .pre-hero .hero-photos img {
-    width: min(600px, 70%);
-    max-width: 600px;
+    width: min(480px, 56%);
+    max-width: 480px;
   }
 }
 
@@ -403,6 +422,7 @@ main:has(.section-contact) {
   display: flex;
   align-items: center;
   z-index: 0;
+  box-shadow: 0 -15px 40px rgba(0, 0, 0, 0.35);
 }
 
 @media (min-width: 480px) {
@@ -548,8 +568,7 @@ main:has(.section-contact) {
   width: calc((100% - 2rem)/3);
   max-width: 460px;
   height: auto;
-  aspect-ratio: 4/3;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 12px;
   box-shadow: 0 6px 18px rgba(0, 0, 0, .08);
   border: 1px solid rgba(0, 0, 0, .04)
