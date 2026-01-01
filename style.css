@@ -290,10 +290,6 @@ main:has(.section-contact) {
 /* Pre-Hero */
 
 .pre-hero {
-  background-image: url("images/plum velvet.jpg");
-  background-size: 100% auto;
-  background-repeat: repeat-y;
-  background-position: top center;
   min-height: 50vh;
   max-height: 70vh;
   height: 55vh;
@@ -304,6 +300,22 @@ main:has(.section-contact) {
   position: relative;
   z-index: 0;
   padding: 2rem 1rem;
+  overflow: hidden;
+}
+
+.pre-hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("images/plum velvet.jpg");
+  background-size: 100% auto;
+  background-repeat: repeat-y;
+  background-position: top center;
+  filter: blur(1.1px);
+  z-index: -1;
 }
 
 @media (min-width: 480px) {
