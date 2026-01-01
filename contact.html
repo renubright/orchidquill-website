@@ -67,7 +67,38 @@
                   >
                 </p>
               </div>
-              <form id="contact-form" novalidate>
+              <form
+                id="contact-form"
+                action="https://formsubmit.co/c8e0466b836bbdae72d0418706a9212f"
+                method="POST"
+                novalidate
+              >
+                <!-- Hidden fields for FormSubmit -->
+                <input
+                  type="hidden"
+                  name="_subject"
+                  value="New Contact Form Submission - OrchilQuill"
+                />
+                <input
+                  type="hidden"
+                  name="_next"
+                  value="https://renubright.github.io/orchidquill-website/thanks.html"
+                />
+                <input
+                  type="hidden"
+                  name="_blacklist"
+                  value="viagra, casino, crypto, backlink, guest post, seo"
+                />
+
+                <!-- Honeypot field -->
+                <input
+                  type="text"
+                  name="_honey"
+                  style="display: none"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+
                 <div class="form-group">
                   <label for="name">Name<span>*</span></label>
                   <input type="text" id="name" name="name" required />
@@ -81,9 +112,14 @@
                 </div>
 
                 <div class="form-group">
-                  <label for="date">Wedding Date<span>*</span></label>
-                  <input type="date" id="date" name="date" required />
-                  <p class="form-error" data-error-for="date"></p>
+                  <label for="wedding_date">Wedding Date<span>*</span></label>
+                  <input
+                    type="date"
+                    id="wedding_date"
+                    name="wedding_date"
+                    required
+                  />
+                  <p class="form-error" data-error-for="wedding_date"></p>
                 </div>
 
                 <div class="form-group">
@@ -93,14 +129,14 @@
                   <input
                     type="number"
                     id="invitation-count"
-                    name="invitation-count"
+                    name="invitation_count"
                     min="1"
                     required
                   />
                   <p class="form-hint">
                     Please note: this is not the number of guests.
                   </p>
-                  <p class="form-error" data-error-for="invitation-count"></p>
+                  <p class="form-error" data-error-for="invitation_count"></p>
                 </div>
 
                 <div class="form-group">
@@ -110,12 +146,12 @@
                   <input
                     type="date"
                     id="invitation-drop-date"
-                    name="invitation-drop-date"
+                    name="invitation_drop_date"
                     required
                   />
                   <p
                     class="form-error"
-                    data-error-for="invitation-drop-date"
+                    data-error-for="invitation_drop_date"
                   ></p>
                 </div>
 
@@ -126,7 +162,7 @@
                       <input
                         type="checkbox"
                         id="save-the-date"
-                        name="save-the-date"
+                        name="save_the_date"
                       />
                       <span>Save the Date</span>
                     </label>
@@ -134,7 +170,7 @@
                       <input
                         type="checkbox"
                         id="day-of-stationary"
-                        name="day-of-stationary"
+                        name="day_of_stationary"
                       />
                       <span>Day-of Stationary</span>
                     </label>
@@ -193,6 +229,11 @@
         </div>
       </section>
     </main>
+
+    <!-- Snackbar Notification -->
+    <div id="snackbar" class="snackbar" aria-live="polite" aria-atomic="true">
+      <span class="snackbar-message"></span>
+    </div>
 
     <!-- Footer -->
     <footer class="site-footer">

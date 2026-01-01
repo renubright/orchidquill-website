@@ -21,7 +21,7 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
   });
 });
 
-// Contact form validation + fake submit
+// Contact form validation
 const form = document.getElementById("contact-form");
 const successMessage = document.getElementById("form-success-message");
 const setError = (name, msg) => {
@@ -31,18 +31,17 @@ const setError = (name, msg) => {
 const validEmail = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 if (form)
   form.addEventListener("submit", (e) => {
-    e.preventDefault();
     const name = form.name.value.trim();
     const email = form.email.value.trim();
-    const date = form.date.value;
+    const date = form.wedding_date.value;
     const invitationDropDateEl = form.querySelector(
-      '[name="invitation-drop-date"]'
+      '[name="invitation_drop_date"]'
     );
     const invitationDropDate = invitationDropDateEl
       ? invitationDropDateEl.value
       : null;
     const budget = form.budget ? parseFloat(form.budget.value) : null;
-    const invitationCountEl = form.querySelector('[name="invitation-count"]');
+    const invitationCountEl = form.querySelector('[name="invitation_count"]');
     const invitationCount = invitationCountEl
       ? parseInt(invitationCountEl.value)
       : null;
@@ -61,20 +60,20 @@ if (form)
       ok = false;
     } else setError("email", "");
     if (!date) {
-      setError("date", "Please provide your wedding date.");
+      setError("wedding_date", "Please provide your wedding date.");
       ok = false;
     } else {
       const weddingDate = new Date(date);
       const today = new Date();
       today.setHours(0, 0, 0, 0);
       if (weddingDate <= today) {
-        setError("date", "Wedding date must be in the future.");
+        setError("wedding_date", "Wedding date must be in the future.");
         ok = false;
-      } else setError("date", "");
+      } else setError("wedding_date", "");
     }
     if (!invitationDropDate) {
       setError(
-        "invitation-drop-date",
+        "invitation_drop_date",
         "Please provide the invitation drop date."
       );
       ok = false;
@@ -84,11 +83,11 @@ if (form)
       today.setHours(0, 0, 0, 0);
       if (dropDate <= today) {
         setError(
-          "invitation-drop-date",
+          "invitation_drop_date",
           "Invitation drop date must be in the future."
         );
         ok = false;
-      } else setError("invitation-drop-date", "");
+      } else setError("invitation_drop_date", "");
     }
     if (budget !== null) {
       if (!budget || isNaN(budget)) {
@@ -105,21 +104,23 @@ if (form)
     if (invitationCount !== null) {
       if (!invitationCount || isNaN(invitationCount) || invitationCount < 1) {
         setError(
-          "invitation-count",
+          "invitation_count",
           "Please enter a valid number of invitations (at least 1)."
         );
         ok = false;
-      } else setError("invitation-count", "");
+      } else setError("invitation_count", "");
     }
     if (!message) {
       setError("message", "Please share additional details about your event.");
       ok = false;
     } else setError("message", "");
-    if (!ok) return;
-    form.reset();
-    if (successMessage)
-      successMessage.textContent =
-        "Thank you for reaching out. Your inquiry has been received and we'll respond warmly as soon as possible.";
+
+    // If validation fails, prevent form submission
+    if (!ok) {
+      e.preventDefault();
+      return;
+    }
+    // If validation passes, allow normal form POST to proceed
   });
 
 // Dynamic year in footer
@@ -190,3 +191,61 @@ document.addEventListener("keydown", (e) => {
     closeLightbox();
   }
 });
+
+// Auto-redirect with progress bar for thanks page
+(function () {
+  const homeButton = document.getElementById("home-button");
+  const progressBar = document.getElementById("progress-bar");
+  const homeUrl = "/orchidquill-website/index.html";
+
+  if (!homeButton || !progressBar) return;
+
+  // Check for debug mode in URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const isDebugMode = urlParams.has("debug");
+
+  const duration = 5000; // 5 seconds
+  const interval = 50; // Update every 50ms for smooth animation
+  const increment = (100 / duration) * interval; // Percentage to increment per interval
+  let currentWidth = 0;
+  let progressTimer = null;
+
+  function updateProgress() {
+    currentWidth += increment;
+    homeButton.classList.add("loading");
+    if (currentWidth >= 100) {
+      progressBar.style.width = "100%";
+      if (isDebugMode) {
+        // In debug mode, reset and loop instead of redirecting
+        setTimeout(() => {
+          currentWidth = 0;
+          progressBar.style.width = "0%";
+          updateProgress();
+        }, 100);
+      } else {
+        window.location.href = homeUrl;
+      }
+    } else {
+      progressBar.style.width = currentWidth + "%";
+      progressTimer = setTimeout(updateProgress, interval);
+    }
+  }
+
+  function cancelRedirect() {
+    if (progressTimer) {
+      clearTimeout(progressTimer);
+      progressTimer = null;
+    }
+    progressBar.style.width = "0%";
+    currentWidth = 0;
+    homeButton.classList.remove("loading");
+  }
+
+  // Start progress bar animation
+  updateProgress();
+
+  // Cancel redirect if user clicks home button (manual navigation)
+  homeButton.addEventListener("click", function (e) {
+    cancelRedirect();
+  });
+})();

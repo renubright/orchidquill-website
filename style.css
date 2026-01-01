@@ -1924,3 +1924,31 @@ textarea:focus {
     max-height: 85dvh;
   }
 }
+
+/* Thanks page progress bar */
+#home-button {
+  position: relative;
+  overflow: hidden;
+}
+
+#progress-bar {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 0%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: width 0.1s linear;
+  pointer-events: none;
+  z-index: 0;
+}
+
+#home-button span:not(#progress-bar) {
+  position: relative;
+  z-index: 1;
+}
+
+#home-button.loading {
+  border-color: transparent;
+  outline: none;
+}
