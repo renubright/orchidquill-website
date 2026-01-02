@@ -1969,6 +1969,54 @@ textarea:focus {
   font-size: 0.85rem;
 }
 
+.footer-left {
+  margin-bottom: 1rem;
+}
+
+.footer-left p {
+  margin: 0;
+}
+
+.footer-right {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-main);
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  width: 18px;
+  height: 18px;
+}
+
+.social-link svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  stroke: none;
+}
+
+.social-link svg path {
+  fill: currentColor;
+}
+
+.social-link:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}
+
+.social-link:focus {
+  outline: 2px solid var(--text-main);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 .footer-note {
   margin-top: 0.3rem;
   color: var(--text-main);
