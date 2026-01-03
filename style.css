@@ -1967,10 +1967,14 @@ textarea:focus {
 .footer-inner {
   text-align: center;
   font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .footer-left {
-  margin-bottom: 1rem;
+  order: 2;
 }
 
 .footer-left p {
@@ -1982,6 +1986,7 @@ textarea:focus {
   align-items: center;
   gap: 1rem;
   justify-content: center;
+  order: 1;
 }
 
 .social-link {
