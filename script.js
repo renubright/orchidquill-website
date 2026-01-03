@@ -157,14 +157,52 @@ function closeLightbox() {
 // Add click/touch event listeners to portfolio images
 if (portfolioItems.length > 0) {
   portfolioItems.forEach((img) => {
-    // Handle both click and touch events
-    img.addEventListener("click", (e) => {
-      e.preventDefault();
-      openLightbox(img.src, img.alt);
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchMoved = false;
+    let touchJustHandled = false;
+
+    // Track touch start position
+    img.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].clientX;
+      touchStartY = e.touches[0].clientY;
+      touchMoved = false;
+      touchJustHandled = false;
+    }, { passive: true });
+
+    // Track if touch moved (scrolling)
+    img.addEventListener("touchmove", (e) => {
+      if (e.touches.length > 0) {
+        const deltaX = Math.abs(e.touches[0].clientX - touchStartX);
+        const deltaY = Math.abs(e.touches[0].clientY - touchStartY);
+        // If moved more than 10px, consider it a scroll
+        if (deltaX > 10 || deltaY > 10) {
+          touchMoved = true;
+        }
+      }
+    }, { passive: true });
+
+    // Handle touch end - only open lightbox if it was a tap (not a scroll)
+    img.addEventListener("touchend", (e) => {
+      if (!touchMoved) {
+        e.preventDefault();
+        openLightbox(img.src, img.alt);
+        touchJustHandled = true;
+        // Reset flag after a delay to allow click event to be blocked
+        setTimeout(() => {
+          touchJustHandled = false;
+        }, 300);
+      }
     });
 
-    // Touch event for mobile devices
-    img.addEventListener("touchend", (e) => {
+    // Handle click for desktop
+    img.addEventListener("click", (e) => {
+      // Prevent click if touch was just handled (mobile)
+      if (touchJustHandled) {
+        e.preventDefault();
+        return;
+      }
+      // Desktop click handler
       e.preventDefault();
       openLightbox(img.src, img.alt);
     });
