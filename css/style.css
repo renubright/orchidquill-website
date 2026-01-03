@@ -22,22 +22,9 @@
 
 /* Fonts */
 @font-face {
-  font-family: 'Lancelot';
-  src: local('Lancelot'),
-       url('../fonts/Lancelot.woff2') format('woff2'),
-       url('../fonts/Lancelot.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
   font-family: 'Lucy Rose';
   src: local('Lucy Rose'),
-       url('../fonts/LucyRose.woff2') format('woff2'),
-       url('../fonts/LucyRose.woff') format('woff'),
-       url('../fonts/LucyRose.otf') format('opentype'),
-       url('../fonts/LucyRose.ttf') format('truetype');
+       url('../fonts/LucyRose.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -490,7 +477,7 @@ main:has(.section-contact) {
   align-items: center;
   backdrop-filter: blur(4px);
   text-transform: none;
-  font-family: 'Lucy Rose', 'Lancelot', 'Playfair Display', serif;
+  font-family: 'Lucy Rose', 'Playfair Display', serif;
 }
 
 .hero-box p {
@@ -1112,7 +1099,7 @@ main:has(.section-contact) {
 
 .about-box {
   background: #8f5c699f;
-  font-family: 'Lancelot', 'Playfair Display', serif;
+  font-family: 'Playfair Display', serif;
   padding: 4.5rem 5rem !important;
   border-radius: var(--radius-large);
 }
