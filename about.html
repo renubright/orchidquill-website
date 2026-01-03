@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="About — Orchid Quill" />
 
-    <link rel="icon" type="image/svg+xml" href="images/Orchid Quill Logo.svg" />
+    <link rel="icon" type="image/svg+xml" href="images/orchid-quill-logo.svg" />
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -20,32 +20,12 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="css/style.css" />
   </head>
 
   <body>
     <!-- Header / Navigation -->
-    <header class="site-header">
-      <div class="container header-inner">
-        <a href="index.html" class="logo">
-          <span class="logo-main">Orchid Quill</span>
-        </a>
-
-        <button class="nav-toggle" aria-label="Toggle navigation">
-          <span class="nav-toggle-line"></span>
-          <span class="nav-toggle-line"></span>
-        </button>
-
-        <nav class="site-nav">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Inquiry</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+    <div id="header-placeholder"></div>
 
     <main>
       <!-- Team Section -->
@@ -66,7 +46,7 @@
                 </p>
               </div>
               <div class="team-member-image">
-                <img src="images/main1.png" alt="Team Member 1" />
+                <img src="images/home-hero-1.png" alt="Team Member 1" />
               </div>
               <div class="team-member-text">
                 <p>
@@ -80,7 +60,7 @@
             <!-- Second entry: Image | Text | Image -->
             <div class="team-member team-member-image-text-image">
               <div class="team-member-image">
-                <img src="images/main2.png" alt="Team Member 2" />
+                <img src="images/home-hero-2.png" alt="Team Member 2" />
               </div>
               <div class="team-member-content">
                 <p>
@@ -92,7 +72,7 @@
                 </p>
               </div>
               <div class="team-member-image">
-                <img src="images/main3.png" alt="Team Member 2 Alternate" />
+                <img src="images/home-hero-3.png" alt="Team Member 2 Alternate" />
               </div>
             </div>
           </div>
@@ -101,50 +81,9 @@
     </main>
 
     <!-- Footer -->
-    <footer class="site-footer">
-      <div class="container footer-inner">
-        <div class="footer-left">
-          <p>
-            &copy; <span id="year"></span> Orchid Quill. All rights reserved.
-          </p>
-          <p class="footer-note">
-            Crafted with care for couples who love beautiful details.
-          </p>
-        </div>
-        <div class="footer-right">
-          <a
-            href="https://www.instagram.com/orchid_quill"
-            target="_blank"
-            rel="noopener"
-            aria-label="Instagram"
-            class="social-link"
-          >
-            <!-- Instagram SVG -->
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm10 2a3 3 0 013 3v10a3 3 0 01-3 3H7a3 3 0 01-3-3V7a3 3 0 013-3h10zm-5 3a5 5 0 100 10 5 5 0 000-10zm0 2a3 3 0 110 6 3 3 0 010-6zm5.5-.9a1.1 1.1 0 100 2.2 1.1 1.1 0 000-2.2z"
-              />
-            </svg>
-          </a>
+    <div id="footer-placeholder"></div>
 
-          <a
-            href="https://www.pinterest.com/orchid_quill"
-            target="_blank"
-            rel="noopener"
-            aria-label="Pinterest"
-            class="social-link"
-          >
-            <!-- Pinterest SVG -->
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M12 2C6.477 2 2 6.486 2 12.021c0 4.24 2.664 7.918 6.438 9.378-.09-.797-.17-2.02.036-2.89.185-.79 1.195-5.034 1.195-5.034s-.305-.61-.305-1.513c0-1.418.822-2.477 1.846-2.477.87 0 1.29.653 1.29 1.437 0 .875-.557 2.182-.845 3.395-.24 1.016.51 1.845 1.51 1.845 1.813 0 3.207-1.912 3.207-4.668 0-2.441-1.754-4.148-4.257-4.148-2.9 0-4.604 2.175-4.604 4.424 0 .875.337 1.813.757 2.322a.304.304 0 01.07.29c-.077.318-.25 1.016-.285 1.158-.046.187-.15.227-.347.137-1.294-.603-2.102-2.495-2.102-4.02 0-3.27 2.375-6.28 6.852-6.28 3.597 0 6.39 2.563 6.39 5.99 0 3.574-2.253 6.45-5.383 6.45-1.05 0-2.04-.546-2.38-1.19l-.645 2.46c-.232.9-.86 2.028-1.28 2.715.965.298 1.99.458 3.06.458 5.523 0 10-4.486 10-10.02C22 6.486 17.523 2 12 2z"
-              />
-            </svg>
-          </a>
-        </div>
-      </div>
-    </footer>
-
-    <script src="script.js"></script>
+    <script src="js/load-components.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
