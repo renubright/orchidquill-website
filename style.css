@@ -1209,6 +1209,7 @@ main:has(.section-contact) {
 
   .contact-box {
     margin: 0 1rem 4rem 1rem;
+    padding: 2.5rem 2rem !important;
     border-radius: var(--radius-medium);
   }
 }
@@ -1237,6 +1238,7 @@ main:has(.section-contact) {
 
   .contact-box {
     margin: 0 0.75rem 3rem 0.75rem;
+    padding: 2rem 1.5rem !important;
     border-radius: var(--radius-medium);
   }
 }
@@ -1566,13 +1568,13 @@ main:has(.section-contact) {
 }
 
 .form-intro p:first-child {
-  font-size: 1.1rem;
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
   line-height: 1.8;
 }
 
 .form-intro p:last-child {
   margin-bottom: 0;
-  font-size: 0.9rem;
+  font-size: clamp(0.85rem, 2vw, 0.9rem);
   font-style: italic;
 }
 
@@ -1779,6 +1781,16 @@ textarea:focus {
 
   textarea {
     padding: 0.65rem 0.9rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .form-intro p:first-child {
+    font-size: clamp(1.05rem, 3vw, 1.15rem);
+  }
+
+  .form-intro p:last-child {
+    font-size: clamp(0.88rem, 2.2vw, 0.95rem);
   }
 }
 
