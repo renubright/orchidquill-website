@@ -111,10 +111,11 @@ main:has(.section-contact) {
 }
 
 .section-header h2 {
-  font-family: "Playfair Display", serif;
+  font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
   font-size: clamp(1.5rem, 4vw, 2rem);
   margin: 0.3rem 0 0.7rem;
   letter-spacing: 0.02em;
+  font-display: swap;
 }
 
 .section-intro {
@@ -162,10 +163,11 @@ main:has(.section-contact) {
 }
 
 .logo-main {
-  font-family: "Playfair Display", serif;
+  font-family: "Playfair Display", "Georgia", "Times New Roman", serif;
   font-size: clamp(1.1rem, 3vw, 1.4rem);
   letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-display: swap;
 }
 
 .logo-sub {
