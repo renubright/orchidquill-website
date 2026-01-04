@@ -34,13 +34,34 @@
     portfolioGrid.innerHTML = "";
 
     // Generate portfolio items for each image
+    // Descriptive alt text for each portfolio image
+    const altTexts = [
+      "Elegant floral wedding invitation suite with botanical motifs",
+      "Luxury custom wedding stationery with vintage design elements",
+      "Handcrafted wedding invitation with wax seal and ribbon details",
+      "Minimalist wedding stationery design with modern typography",
+      "Romantic wedding invitation suite with watercolor floral accents",
+      "Classic wedding stationery with gold foil and embossed details",
+      "Boho-inspired wedding invitation with mixed media textures",
+      "Garden wedding stationery design with botanical illustrations",
+      "Vintage-style wedding invitation with ornate typography",
+      "Modern wedding stationery with geometric patterns",
+      "Rustic wedding invitation suite with natural paper textures",
+      "Elegant wedding stationery with calligraphy and floral borders",
+      "Luxury wedding invitation with velvet ribbon and custom seal",
+      "Art deco wedding stationery design with geometric motifs",
+      "Romantic wedding invitation with pressed flowers and delicate details",
+    ];
+
     portfolioImages.forEach((imageName, index) => {
       const portfolioItem = document.createElement("div");
       portfolioItem.className = "portfolio-item";
 
       const img = document.createElement("img");
       img.src = `images/portfolio/${imageName}`;
-      img.alt = `Portfolio item ${index + 1}`;
+      img.alt =
+        altTexts[index] ||
+        `Orchid Quill wedding stationery design ${index + 1}`;
       img.loading = "lazy"; // Lazy load images for better performance
 
       portfolioItem.appendChild(img);
