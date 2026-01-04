@@ -900,9 +900,8 @@ main:has(.section-contact) {
   background-position: center;
   background-repeat: no-repeat;
   position: relative;
-  padding: 4.5rem 0 0 0 !important;
+  padding: 4.5rem 0 4rem 0 !important;
   margin: 0 !important;
-  padding-bottom: 0 !important;
   flex: 1;
   min-height: calc(100vh - 150px);
   background-attachment: fixed;
@@ -930,7 +929,7 @@ main:has(.section-contact) {
 .section-about .container {
   position: relative;
   z-index: 1;
-  padding-bottom: 0 !important;
+  padding-bottom: 4rem !important;
   margin-bottom: 0 !important;
 }
 
@@ -1026,37 +1025,51 @@ main:has(.section-contact) {
 
 @media (min-width: 480px) {
   .section-with-overlay,
-  .section-about,
   .section-contact,
   #portfolio-gallery.section {
     padding: 3rem 0 0 0 !important;
+  }
+  
+  .section-about {
+    padding: 3rem 0 3rem 0 !important;
   }
 }
 
 @media (max-width: 479px) {
   .section-with-overlay,
-  .section-about,
   .section-contact,
   #portfolio-gallery.section {
     padding: 2rem 0 0 0 !important;
+  }
+  
+  .section-about {
+    padding: 2rem 0 2rem 0 !important;
   }
 }
 
 @media (min-width: 1024px) {
   .section-with-overlay,
-  .section-about,
   .section-contact,
   #portfolio-gallery.section {
     padding: 4.5rem 0 0 0 !important;
     margin-bottom: 0 !important;
   }
+  
+  .section-about {
+    padding: 4.5rem 0 4.5rem 0 !important;
+    margin-bottom: 0 !important;
+  }
 
   .section-with-overlay .container,
-  .section-about .container,
   .section-contact .container,
   #portfolio-gallery .container {
     margin-bottom: 0 !important;
     padding-bottom: 0 !important;
+  }
+  
+  .section-about .container {
+    margin-bottom: 0 !important;
+    padding-bottom: 4.5rem !important;
   }
 }
 
