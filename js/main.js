@@ -231,7 +231,7 @@ document.addEventListener("keydown", (e) => {
 (function () {
   const homeButton = document.getElementById("home-button");
   const progressBar = document.getElementById("progress-bar");
-  const homeUrl = "/orchidquill-website/index.html";
+  const homeUrl = "index.html";
 
   if (!homeButton || !progressBar) return;
 
